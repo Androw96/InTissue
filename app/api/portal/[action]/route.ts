@@ -1,3 +1,4 @@
+import { veterinaryReferenceFees } from '@/lib/veterinary-fees';
 import { cookies } from 'next/headers';
 import { rawDb } from '@/db';
 import { getChatGPTUser } from '@/app/chatgpt-auth';
@@ -65,6 +66,10 @@ export async function GET(req: Request, ctx: Context) {
           return json({ signedIn: true, active: false });
         throw e;
       }
+    }
+    if (action === 'veterinary-fees') {
+      await requireDoctor();
+      return json(veterinaryReferenceFees);
     }
     if (action === 'fees') {
       await requireDoctor();

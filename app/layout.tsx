@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'InTissue | Csonttranszplantátumok',
   icons: { icon: '/favicon.svg' },
   description:
-    'Humán csontblokkok szakmai katalógusa. Orvosi regisztráció, ellenőrzött hozzáférés és térítési díjak.',
+    'Humán DIZG csontblokkok és InTissue állatgyógyászati csontgraftok katalógusa. Orvosi regisztráció, ellenőrzött hozzáférés és térítési díjak.',
 };
 export default function RootLayout({
   children,

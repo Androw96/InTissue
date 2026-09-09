@@ -43,6 +43,11 @@ type RequestRow = {
   created_at: number;
 };
 type ApiResponses = {
+  'veterinary-fees': {
+    currency: 'EUR';
+    checked: string;
+    fees: { id: number; amount: number }[];
+  };
   status: Status;
   session: { ok: boolean; expiresAt: number };
   activity: { expiresAt: number };

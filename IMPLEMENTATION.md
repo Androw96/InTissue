@@ -41,3 +41,11 @@ Az adminisztrátor e-mail-címét a felhasználó még nem adta meg, ezért ninc
 A `tests/policy.test.ts` 5 időhatár-, dátum- és jogosultságtesztje, valamint a `tests/integration.mjs` 12 helyi API-ellenőrzése sikeres. Az integrációs teszt kizárólag az üres helyi fejlesztői adatbázis `local_seedy` tesztfelhasználójával futtatható; a saját tesztadatait eltávolítja.
 
 Az `open_bone_product` WebMCP eszköz ugyanazt a termékadatlapot nyitja meg, mint a felület. Támogatott WebMCP-végrehajtási kontextus nem volt elérhető, ezért ennek böngészős szerződésellenőrzése nem történt meg. Teljes böngészős felületteszt nem volt kérve.
+
+## InTissue forrástartalmak – 2026-09-09
+
+A felhasználó kérésére átvettük az intissue.com főoldalának bemutatkozó tartalmát és az /animal állatgyógyászati katalógusát. A közvetlen /animal URL a lekéréskor 404-et adott; az oldal főoldaláról hivatkozott nyilvános /assets/index-lOWr1Wcq.js alkalmazáscsomag tartalmazta a teljes termékoldalt, a 3 termékcsaládot, 15 táblázatsort, a kiszereléseket, EUR referenciaösszegeket, termékfotó-hivatkozásokat és a gyártói ismertetőt. A forrásoldal táblázata és leírása helyenként eltérő kiszereléseket sorol fel; a táblázati adatokat használtuk, és ezt az adatlapon jelöltük.
+
+Az állatgyógyászati termékek külön tájékoztató részt kaptak, a gyártó „not for use in human patients” korlátozásával. A 15 tétel nem került a humán igénylési végpont megengedett cikkszámai közé. A referencia térítési díjak EUR-ban, kiszolgálóoldalon tároltak, és a meglévő jóváhagyási/munkamenet-kapun keresztül kérhetők le. Nem írják felül a HUF-ban kezelt, visszaigazolt díjtáblázatot. Állatorvosi hitelesítést vagy állatgyógyászati rendelést ez a tartalombővítés nem vezet be.
+
+A főoldal bemutatkozó szövege, a gyártó neve/címe, az általános tárolási ismertető és a szakmai videótár létezése szerepel a felületen. Gyógyulási ígéretek, nem ellenőrzött tanúsítási állítások és műtéti lépések nem kerültek új marketingállításként átvételre. A három új fotó eredeti InTissue termékfotó.

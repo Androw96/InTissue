@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import VeterinaryCatalog from './veterinary-catalog';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -158,8 +159,8 @@ export default function Catalog() {
   return (
     <>
       <div className="topbar">
-        <span>HUMÁN SZÖVETPÓTLÁS · SZAKMAI PORTÁL</span>
-        <span>Orvosok és egészségügyi intézmények számára</span>
+        <span>SZÖVETREGENERÁCIÓ · SZAKMAI PORTÁL</span>
+        <span>Humán és állatgyógyászati termékinformációk</span>
       </div>
       <header className="header">
         <a className="logo" href="/">
@@ -170,7 +171,8 @@ export default function Catalog() {
           <a className="active" href="#katalogus">
             Transzplantátumok
           </a>
-          <a href="#hozzaferes">Szakmai hozzáférés</a>
+          <a href="#allatgyogyaszat">Állatgyógyászat</a>
+          <a href="#intissue">Az InTissue-ról</a>
           <a href="https://dizg.de" target="_blank" rel="noreferrer">
             A DIZG-ről <ArrowUpRight size={14} />
           </a>
@@ -212,9 +214,9 @@ export default function Catalog() {
               <em>Biztos alapokon.</em>
             </h1>
             <p>
-              Humán csontblokkok és strukturális transzplantátumok.
+              Humán csontblokkok és állatgyógyászati csontgraftok.
               <br />
-              Ismerje meg a DIZG kínálatát egy helyen.
+              A DIZG és az InTissue kínálata egy helyen.
             </p>
             <a className="text-link" href="#katalogus">
               Transzplantátumok megtekintése <ArrowRight size={18} />
@@ -240,7 +242,7 @@ export default function Catalog() {
         <section className="catalog-section" id="katalogus">
           <div className="section-top">
             <div>
-              <div className="eyebrow">TERMÉKKATALÓGUS</div>
+              <div className="eyebrow">DIZG · HUMÁN TERMÉKKATALÓGUS</div>
               <h2>Csontblokkok és ékek</h2>
             </div>
             <span className="count">03 transzplantátum-típus</span>
@@ -288,6 +290,7 @@ export default function Catalog() {
             térítési díj külön visszaigazolás tárgya.
           </p>
         </section>
+        <VeterinaryCatalog />
         <section className="access-band" id="hozzaferes">
           <ShieldCheck size={36} strokeWidth={1.3} />
           <div>
@@ -348,7 +351,9 @@ export default function Catalog() {
           in<span>tissue</span>
           <i>+</i>
         </a>
-        <span>Szakmai katalógus · Privát bemutató · Termékfotók: DIZG</span>
+        <span>
+          Szakmai katalógus · Privát bemutató · Termékfotók: DIZG és InTissue
+        </span>
         <a href="https://kereso.enkk.hu/" target="_blank" rel="noreferrer">
           OKFŐ nyilvántartás <ArrowUpRight size={14} />
         </a>

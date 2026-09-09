@@ -1017,3 +1017,139 @@ textarea::placeholder {
     white-space: nowrap;
   }
 }
+.veterinary-section {
+  margin-top: 5px;
+}
+.veterinary-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #f4efdf;
+  border: 1px solid #e2d9bc;
+  border-radius: 5px;
+  color: #71602e;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+.veterinary-notice strong {
+  font-weight: 600;
+}
+.vet-visual {
+  background: #030505;
+}
+.vet-visual img {
+  mix-blend-mode: normal;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  padding: 0 0 25px;
+  object-fit: contain;
+}
+.vet-visual.specialty {
+  background: #4d7476;
+}
+.vet-visual .product-index {
+  color: #edf0e8;
+  background: #0b1818b5;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.vet-visual .material {
+  color: #324538;
+  font-size: 12px;
+  background: #f3f5efed;
+}
+.intissue-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9%;
+  padding: 50px 0 65px;
+  border-top: 1px solid #dce4dc;
+}
+.intissue-about h2 {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin: 15px 0 23px;
+}
+.intissue-about p {
+  color: #667263;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.intissue-about .manufacturer {
+  margin-top: 25px;
+  font-size: 14px;
+}
+.source-facts article {
+  display: flex;
+  gap: 18px;
+  margin: 0 0 26px;
+}
+.source-facts svg {
+  color: #658052;
+  margin-top: 4px;
+}
+.source-facts h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+.source-facts p {
+  font-size: 14px;
+}
+.veterinary-section + .intissue-about {
+  margin-top: 5px;
+}
+.dialog-content [data-slot='table'] {
+  font-size: 14px;
+}
+.dialog-content [data-slot='table-head'] {
+  font-size: 12px;
+  white-space: normal;
+  max-width: 160px;
+}
+.dialog-content [data-slot='table-cell'] {
+  white-space: normal;
+  min-width: 90px;
+}
+@media (max-width: 1000px) {
+  .header nav {
+    gap: 17px;
+  }
+  .header nav a {
+    font-size: 13px;
+  }
+}
+@media (max-width: 700px) {
+  .intissue-about {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 35px 0 45px;
+  }
+  .intissue-about h2 {
+    font-size: 30px;
+  }
+  .veterinary-section .section-top {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .veterinary-notice {
+    align-items: flex-start;
+  }
+  .header nav {
+    flex-wrap: wrap;
+  }
+  .header nav a:last-child {
+    display: none;
+  }
+  .vet-visual img {
+    padding-bottom: 28px;
+  }
+  .dialog-content [data-slot='table-cell'] {
+    font-size: 13px;
+  }
+}

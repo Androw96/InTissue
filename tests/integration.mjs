@@ -47,6 +47,9 @@ try {
   let r = await request('/api/portal/fees');
   assert.equal(r.status, 401);
   ok('anonymous protected endpoint rejected');
+  r = await request('/api/portal/veterinary-fees');
+  assert.equal(r.status, 401);
+  ok('anonymous veterinary reference fees rejected');
   await request('/signin-with-chatgpt?return_to=%2Fregisztracio');
   r = await request('/api/portal/session', {});
   assert.equal(r.status, 200);
@@ -89,6 +92,9 @@ try {
   r = await request('/api/portal/fees');
   assert.equal(r.status, 403);
   ok('pending doctor cannot access fees');
+  r = await request('/api/portal/veterinary-fees');
+  assert.equal(r.status, 403);
+  ok('pending doctor cannot access veterinary reference fees');
   r = await request('/api/portal/review', {
     userId: 'local_seedy',
     decision: 'approved',
@@ -106,6 +112,18 @@ try {
   assert.match(r.headers.get('cache-control'), /no-store/);
   assert.equal((await r.json()).fees[0].amount, 12345);
   ok('approved doctor accesses uncached fees');
+  r = await request('/api/portal/veterinary-fees');
+  assert.equal(r.status, 200);
+  assert.match(r.headers.get('cache-control'), /no-store/);
+  const vet = await r.json();
+  assert.equal(vet.currency, 'EUR');
+  assert.equal(vet.fees.length, 15);
+  assert.equal(vet.fees.find(f => f.id === 1).amount, 120);
+  assert.equal(vet.fees.find(f => f.id === 15).amount, 90);
+  ok('all 15 veterinary source fees retain EUR currency');
+  r = await request('/api/portal/request', {sku:'bmg',quantity:1,fee:120,requestId:crypto.randomUUID()});
+  assert.equal(r.status, 400);
+  ok('veterinary source IDs cannot enter human ordering');
   const id = crypto.randomUUID();
   const payload = { sku: 'GT2601', quantity: 2, fee: 12345, requestId: id };
   r = await request('/api/portal/request', payload);
