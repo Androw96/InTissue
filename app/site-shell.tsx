@@ -1,26 +1,51 @@
+import { Text } from '@/app/language-provider';
+import { LanguageSwitcher } from './language-provider';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 export function SiteHeader() {
   return (
     <>
       <div className="topbar">
-        <span>INTELLIGENT TISSUE SOLUTIONS</span>
-        <span>A regeneráció közös tudásunk.</span>
+        <span>
+          <Text>{'INTELLIGENT TISSUE SOLUTIONS'}</Text>
+        </span>
+        <span>
+          <Text>{'A regeneráció közös tudásunk.'}</Text>
+        </span>
+        <LanguageSwitcher />
       </div>
       <header className="header site-header">
         <a className="logo" href="/" aria-label="InTissue főoldal">
-          in<span>tissue</span>
-          <i>+</i>
+          <Text>{'in'}</Text>
+          <span>
+            <Text>{'tissue'}</Text>
+          </span>
+          <i>
+            <Text>{'+'}</Text>
+          </i>
         </a>
         <nav aria-label="Fő navigáció">
-          <a href="/">Főoldal</a>
-          <a href="/katalogus">Termékkatalógus</a>
-          <a href="/animal">Állatgyógyászat</a>
-          <a href="/videos">Videótár</a>
-          <a href="/team">Csapatunk</a>
-          <a href="/contact">Kapcsolat</a>
+          <a href="/">
+            <Text>{'Főoldal'}</Text>
+          </a>
+          <a href="/katalogus">
+            <Text>{'Termékkatalógus'}</Text>
+          </a>
+          <a href="/animal">
+            <Text>{'Állatgyógyászat'}</Text>
+          </a>
+          <a href="/videos">
+            <Text>{'Videótár'}</Text>
+          </a>
+          <a href="/team">
+            <Text>{'Csapatunk'}</Text>
+          </a>
+          <a href="/contact">
+            <Text>{'Kapcsolat'}</Text>
+          </a>
         </nav>
         <a className="button small outline" href="/regisztracio">
-          Szakmai belépés <ArrowRight size={15} />
+          <Text>{'Szakmai belépés '}</Text>
+          <ArrowRight size={15} />
         </a>
       </header>
     </>
@@ -32,41 +57,73 @@ export function SiteFooter() {
       <div className="site-wrap footer-grid">
         <div>
           <a className="logo" href="/">
-            in<span>tissue</span>
-            <i>+</i>
+            <Text>{'in'}</Text>
+            <span>
+              <Text>{'tissue'}</Text>
+            </span>
+            <i>
+              <Text>{'+'}</Text>
+            </i>
           </a>
           <p>
-            Szövetregeneráció.
+            <Text>{'Szövetregeneráció. '}</Text>
             <br />
-            Szakértelem. Együttműködés.
+            <Text>{'Szakértelem. Együttműködés. '}</Text>
           </p>
         </div>
         <div>
-          <h3>Fedezze fel</h3>
-          <a href="/katalogus">Termékkatalógus</a>
-          <a href="/animal">Állatgyógyászat</a>
-          <a href="/videos">Szakmai videótár</a>
+          <h3>
+            <Text>{'Fedezze fel'}</Text>
+          </h3>
+          <a href="/katalogus">
+            <Text>{'Termékkatalógus'}</Text>
+          </a>
+          <a href="/animal">
+            <Text>{'Állatgyógyászat'}</Text>
+          </a>
+          <a href="/videos">
+            <Text>{'Szakmai videótár'}</Text>
+          </a>
         </div>
         <div>
-          <h3>InTissue</h3>
-          <a href="/team">Csapatunk</a>
-          <a href="/production">Kreatív és technológiai partnerek</a>
-          <a href="/contact">Kapcsolat</a>
+          <h3>
+            <Text>{'InTissue'}</Text>
+          </h3>
+          <a href="/team">
+            <Text>{'Csapatunk'}</Text>
+          </a>
+          <a href="/production">
+            <Text>{'Kreatív és technológiai partnerek'}</Text>
+          </a>
+          <a href="/contact">
+            <Text>{'Kapcsolat'}</Text>
+          </a>
         </div>
         <div>
-          <h3>Szakmai információk</h3>
-          <a href="/regisztracio">Orvosi regisztráció</a>
-          <a href="/legal">Adatkezelés és impresszum</a>
+          <h3>
+            <Text>{'Szakmai információk'}</Text>
+          </h3>
+          <a href="/regisztracio">
+            <Text>{'Orvosi regisztráció'}</Text>
+          </a>
+          <a href="/legal">
+            <Text>{'Adatkezelés és impresszum'}</Text>
+          </a>
           <a href="https://intissue.com" target="_blank" rel="noreferrer">
-            Eredeti InTissue oldal <ArrowUpRight size={13} />
+            <Text>{'Eredeti InTissue oldal '}</Text>
+            <ArrowUpRight size={13} />
           </a>
         </div>
       </div>
       <div className="site-wrap footer-bottom">
         <span>
-          © {new Date().getFullYear()} InTissue · Intelligent Tissue Solutions
+          <Text>{'© '}</Text>
+          <Text>{new Date().getFullYear()}</Text>
+          <Text>{' InTissue · Intelligent Tissue Solutions '}</Text>
         </span>
-        <span>Humán és állatgyógyászati megoldások</span>
+        <span>
+          <Text>{'Humán és állatgyógyászati megoldások'}</Text>
+        </span>
       </div>
     </footer>
   );
@@ -76,7 +133,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <SiteHeader />
       <main id="main" className="editorial">
-        {children}
+        <Text>{children}</Text>
       </main>
       <SiteFooter />
     </>
@@ -93,9 +150,15 @@ export function PageIntro({
 }) {
   return (
     <section className="page-intro site-wrap">
-      <p className="eyebrow">{label}</p>
-      <h1>{title}</h1>
-      <p className="lead">{description}</p>
+      <p className="eyebrow">
+        <Text>{label}</Text>
+      </p>
+      <h1>
+        <Text>{title}</Text>
+      </h1>
+      <p className="lead">
+        <Text>{description}</Text>
+      </p>
     </section>
   );
 }

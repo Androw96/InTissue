@@ -1,3 +1,4 @@
+import { Text, LocalizedImage } from '@/app/language-provider';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -47,97 +48,140 @@ export default function Home() {
       <section className="home-hero site-wrap">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span /> INTELLIGENT TISSUE SOLUTIONS
+            <span />
+            <Text>{' INTELLIGENT TISSUE SOLUTIONS '}</Text>
           </p>
           <h1>
-            A regeneráció
+            <Text>{'A regeneráció '}</Text>
             <br />
-            <em>közös jövőnk.</em>
+            <em>
+              <Text>{'közös jövőnk.'}</Text>
+            </em>
           </h1>
           <p>
-            Csontgraftmegoldások a humán és állatgyógyászati ellátásban. Tudás,
-            tapasztalat és szöveti innováció — az InTissue-tól.
+            <Text>
+              {
+                'Csontgraftmegoldások a humán és állatgyógyászati ellátásban. Tudás, tapasztalat és szöveti innováció — az InTissue-tól. '
+              }
+            </Text>
           </p>
           <div className="hero-actions">
             <a href="/katalogus" className="button">
-              Termékek felfedezése <ArrowRight size={18} />
+              <Text>{'Termékek felfedezése '}</Text>
+              <ArrowRight size={18} />
             </a>
             <a href="/team" className="text-link">
-              Ismerjen meg minket <ArrowUpRight size={18} />
+              <Text>{'Ismerjen meg minket '}</Text>
+              <ArrowUpRight size={18} />
             </a>
           </div>
           <div className="hero-note">
-            <span className="tiny-mark">+</span>
+            <span className="tiny-mark">
+              <Text>{'+'}</Text>
+            </span>
             <span>
-              Humán és állatgyógyászati szakértelem.
+              <Text>{'Humán és állatgyógyászati szakértelem. '}</Text>
               <br />
-              <strong>Együtt a szövetregenerációért.</strong>
+              <strong>
+                <Text>{'Együtt a szövetregenerációért.'}</Text>
+              </strong>
             </span>
           </div>
         </div>
         <div className="hero-visual">
-          <img
+          <LocalizedImage
             src="/images/hero_banner.webp"
             alt="InTissue – a szövetregeneráció világa"
             fetchPriority="high"
           />
           <div className="hero-caption">
-            <span>01 / INNOVÁCIÓ A GYAKORLATBAN</span>
+            <span>
+              <Text>{'01 / INNOVÁCIÓ A GYAKORLATBAN'}</Text>
+            </span>
             <p>
-              Apró struktúrák.
+              <Text>{'Apró struktúrák. '}</Text>
               <br />
-              Új lehetőségek.
+              <Text>{'Új lehetőségek. '}</Text>
             </p>
           </div>
           <span className="hero-symbol" aria-hidden="true">
-            +
+            <Text>{'+ '}</Text>
           </span>
         </div>
       </section>
       <div className="home-strip">
-        <span>HUMÁN CSONTGRAFTOK</span>
-        <span>ÁLLATGYÓGYÁSZATI MEGOLDÁSOK</span>
-        <span>SZAKMAI TUDÁSMEGOSZTÁS</span>
+        <span>
+          <Text>{'HUMÁN CSONTGRAFTOK'}</Text>
+        </span>
+        <span>
+          <Text>{'ÁLLATGYÓGYÁSZATI MEGOLDÁSOK'}</Text>
+        </span>
+        <span>
+          <Text>{'SZAKMAI TUDÁSMEGOSZTÁS'}</Text>
+        </span>
       </div>
       <section className="site-wrap home-section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">KÖZÖS ALAPOK, KÜLÖNBÖZŐ SZAKTERÜLETEK</p>
-            <h2>A tudástól a gyógyításig.</h2>
+            <p className="eyebrow">
+              <Text>{'KÖZÖS ALAPOK, KÜLÖNBÖZŐ SZAKTERÜLETEK'}</Text>
+            </p>
+            <h2>
+              <Text>{'A tudástól a gyógyításig.'}</Text>
+            </h2>
           </div>
           <p>
-            A megfelelő anyag mellett a tapasztalat is számít. Fedezze fel
-            termékeinket és a mögöttük álló szakmai munkát.
+            <Text>
+              {
+                'A megfelelő anyag mellett a tapasztalat is számít. Fedezze fel termékeinket és a mögöttük álló szakmai munkát. '
+              }
+            </Text>
           </p>
         </div>
         <div className="pathway-grid">
           <a className="pathway" href="/katalogus">
-            <img
+            <LocalizedImage
               src="/images/human_treatment.webp"
               alt="Humán sebészeti ellátás"
               loading="lazy"
             />
             <div>
-              <span>01 / HUMÁN ELLÁTÁS</span>
-              <h3>Biztos alap a csontpótláshoz.</h3>
-              <p>Humán csontblokkok, sebészet és parodontológia.</p>
+              <span>
+                <Text>{'01 / HUMÁN ELLÁTÁS'}</Text>
+              </span>
+              <h3>
+                <Text>{'Biztos alap a csontpótláshoz.'}</Text>
+              </h3>
+              <p>
+                <Text>{'Humán csontblokkok, sebészet és parodontológia.'}</Text>
+              </p>
               <b>
-                Humán termékkatalógus <ArrowUpRight size={20} />
+                <Text>{'Humán termékkatalógus '}</Text>
+                <ArrowUpRight size={20} />
               </b>
             </div>
           </a>
           <a className="pathway" href="/animal">
-            <img
+            <LocalizedImage
               src="/images/animal_treatment.webp"
               alt="Állatgyógyászati ellátás"
               loading="lazy"
             />
             <div>
-              <span>02 / ÁLLATGYÓGYÁSZAT</span>
-              <h3>Gondoskodás, fajokon át.</h3>
-              <p>BMG, csontchips és strukturális graftok állatok számára.</p>
+              <span>
+                <Text>{'02 / ÁLLATGYÓGYÁSZAT'}</Text>
+              </span>
+              <h3>
+                <Text>{'Gondoskodás, fajokon át.'}</Text>
+              </h3>
+              <p>
+                <Text>
+                  {'BMG, csontchips és strukturális graftok állatok számára.'}
+                </Text>
+              </p>
               <b>
-                Állatgyógyászati megoldások <ArrowUpRight size={20} />
+                <Text>{'Állatgyógyászati megoldások '}</Text>
+                <ArrowUpRight size={20} />
               </b>
             </div>
           </a>
@@ -147,68 +191,97 @@ export default function Home() {
         <div className="site-wrap home-section">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">MIÉRT SZÖVETBANKI CSONTGRAFT?</p>
+              <p className="eyebrow">
+                <Text>{'MIÉRT SZÖVETBANKI CSONTGRAFT?'}</Text>
+              </p>
               <h2>
-                A természetből.
-                <br />A szakértelem erejével.
+                <Text>{'A természetből. '}</Text>
+                <br />
+                <Text>{'A szakértelem erejével. '}</Text>
               </h2>
             </div>
             <p>
-              A fagyasztva szárított, sterilizált csontgraftok a
-              sajátcsont-átültetés alternatíváját kínálják. A megfelelő termék
-              kiválasztása mindig az adott beavatkozástól függ.
+              <Text>
+                {
+                  'A fagyasztva szárított, sterilizált csontgraftok a sajátcsont-átültetés alternatíváját kínálják. A megfelelő termék kiválasztása mindig az adott beavatkozástól függ. '
+                }
+              </Text>
             </p>
           </div>
           <div className="benefit-grid">
-            {benefits.map(({ icon: Icon, title, text }) => (
-              <article key={title}>
-                <Icon size={25} strokeWidth={1.5} />
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+            <Text>
+              {benefits.map(({ icon: Icon, title, text }) => (
+                <article key={title}>
+                  <Icon size={25} strokeWidth={1.5} />
+                  <h3>
+                    <Text>{title}</Text>
+                  </h3>
+                  <p>
+                    <Text>{text}</Text>
+                  </p>
+                </article>
+              ))}
+            </Text>
           </div>
         </div>
       </section>
       <section className="site-wrap home-section case-feature">
         <div className="case-image">
-          <img
+          <LocalizedImage
             src="/images/tati_dog.webp"
             alt="Táti kutya – InTissue esettanulmány"
             loading="lazy"
           />
-          <span>ESETBEMUTATÁS / ÁLLATGYÓGYÁSZAT</span>
+          <span>
+            <Text>{'ESETBEMUTATÁS / ÁLLATGYÓGYÁSZAT'}</Text>
+          </span>
         </div>
         <div>
-          <p className="eyebrow">VALÓDI ESETEK. MEGOSZTOTT TAPASZTALAT.</p>
+          <p className="eyebrow">
+            <Text>{'VALÓDI ESETEK. MEGOSZTOTT TAPASZTALAT.'}</Text>
+          </p>
           <h2>
-            Minden eset
+            <Text>{'Minden eset '}</Text>
             <br />
-            <em>egy új történet.</em>
+            <em>
+              <Text>{'egy új történet.'}</Text>
+            </em>
           </h2>
           <p>
-            Ismerje meg Táti történetét és az InTissue szakmai videóit. Humán és
-            állatgyógyászati műtéti eljárások, regeneratív megoldások,
-            közvetlenül a gyakorlatból.
+            <Text>
+              {
+                'Ismerje meg Táti történetét és az InTissue szakmai videóit. Humán és állatgyógyászati műtéti eljárások, regeneratív megoldások, közvetlenül a gyakorlatból. '
+              }
+            </Text>
           </p>
           <a className="button outline" href="/videos">
-            Megnézem a videótárat <ArrowRight size={18} />
+            <Text>{'Megnézem a videótárat '}</Text>
+            <ArrowRight size={18} />
           </a>
-          <small>A videótár műtéti felvételeket tartalmaz.</small>
+          <small>
+            <Text>{'A videótár műtéti felvételeket tartalmaz.'}</Text>
+          </small>
         </div>
       </section>
       <section className="site-wrap home-cta">
         <div>
-          <p className="eyebrow">LÉPJÜNK KAPCSOLATBA</p>
+          <p className="eyebrow">
+            <Text>{'LÉPJÜNK KAPCSOLATBA'}</Text>
+          </p>
           <h2>
-            A következő lépés
+            <Text>{'A következő lépés '}</Text>
             <br />
-            egy beszélgetés.
+            <Text>{'egy beszélgetés. '}</Text>
           </h2>
-          <p>Termékinformációra vagy szakmai együttműködésre van szüksége?</p>
+          <p>
+            <Text>
+              {'Termékinformációra vagy szakmai együttműködésre van szüksége?'}
+            </Text>
+          </p>
         </div>
         <a className="button" href="/contact">
-          Kapcsolatfelvétel <ArrowRight size={18} />
+          <Text>{'Kapcsolatfelvétel '}</Text>
+          <ArrowRight size={18} />
         </a>
       </section>
     </SiteShell>

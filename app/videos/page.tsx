@@ -1,4 +1,6 @@
 'use client';
+import { Text, LocalizedImage, LocalizedButton } from '@/app/language-provider';
+
 import { useState } from 'react';
 import { Play, ArrowRight } from 'lucide-react';
 import SiteShell, { PageIntro } from '../site-shell';
@@ -22,57 +24,80 @@ export default function Videos() {
       />
       <section className="site-wrap content-section">
         <p className="notice-panel">
-          A felvételek valós műtéti jeleneteket tartalmaznak, és szakmai
-          tájékoztatásra szolgálnak. A lejátszás külön kattintással indítható.
+          <Text>
+            {
+              'A felvételek valós műtéti jeleneteket tartalmaznak, és szakmai tájékoztatásra szolgálnak. A lejátszás külön kattintással indítható. '
+            }
+          </Text>
         </p>
-        {[
-          ['human', 'Humán sebészet'],
-          ['animal', 'Állatgyógyászati esetek'],
-        ].map(([cat, title]) => (
-          <section key={cat} id={cat}>
-            <h2>
-              {title}{' '}
-              <small
-                style={{ fontSize: 13, color: '#768574', letterSpacing: 0 }}
-              >
-                {videos.filter((v) => v.category === cat).length} videó
-              </small>
-            </h2>
-            <div className="video-grid">
-              {videos
-                .filter((v) => v.category === cat)
-                .map((v) => (
-                  <button
-                    key={v.src}
-                    type="button"
-                    className="video-card"
-                    onClick={() => setSelected(v)}
-                    aria-label={`${v.title} – videó megnyitása`}
-                  >
-                    <div className="video-thumbnail">
-                      <img
-                        src={v.src.includes('t-ti-the-dog') ? '/images/tati_dog.webp' : v.category === 'animal' ? '/images/animal_treatment.webp' : v.src.includes('regbone-making') ? '/products/intissue/bmg.webp' : '/images/human_treatment.webp'}
-                        alt=""
-                        loading="lazy"
-                        width={640}
-                        height={360}
-                      />
-                      <Play className="play-icon" aria-hidden="true" />
-                    </div>
-                    <div className="video-title-bar">
-                      <h3>{v.title}</h3>
-                      <span>{v.duration}</span>
-                    </div>
-                  </button>
-                ))}
-            </div>
-          </section>
-        ))}
+        <Text>
+          {[
+            ['human', 'Humán sebészet'],
+            ['animal', 'Állatgyógyászati esetek'],
+          ].map(([cat, title]) => (
+            <section key={cat} id={cat}>
+              <h2>
+                <Text>{title} </Text>
+                <small
+                  style={{ fontSize: 13, color: '#768574', letterSpacing: 0 }}
+                >
+                  <Text>{videos.filter((v) => v.category === cat).length}</Text>
+                  <Text>{' videó '}</Text>
+                </small>
+              </h2>
+              <div className="video-grid">
+                <Text>
+                  {videos
+                    .filter((v) => v.category === cat)
+                    .map((v) => (
+                      <LocalizedButton
+                        key={v.src}
+                        type="button"
+                        className="video-card"
+                        onClick={() => setSelected(v)}
+                        aria-label={`${v.title} – videó megnyitása`}
+                      >
+                        <div className="video-thumbnail">
+                          <LocalizedImage
+                            src={
+                              v.src.includes('t-ti-the-dog')
+                                ? '/images/tati_dog.webp'
+                                : v.category === 'animal'
+                                  ? '/images/animal_treatment.webp'
+                                  : v.src.includes('regbone-making')
+                                    ? '/products/intissue/bmg.webp'
+                                    : '/images/human_treatment.webp'
+                            }
+                            alt=""
+                            loading="lazy"
+                            width={640}
+                            height={360}
+                          />
+                          <Play className="play-icon" aria-hidden="true" />
+                        </div>
+                        <div className="video-title-bar">
+                          <h3>
+                            <Text>{v.title}</Text>
+                          </h3>
+                          <span>
+                            <Text>{v.duration}</Text>
+                          </span>
+                        </div>
+                      </LocalizedButton>
+                    ))}
+                </Text>
+              </div>
+            </section>
+          ))}
+        </Text>
         <p className="source-note">
-          A videók az intissue.com eredeti médiatárából töltődnek be.
+          <Text>
+            {'A videók az intissue.com eredeti médiatárából töltődnek be. '}
+          </Text>
         </p>
         <a className="button outline" href="/katalogus">
-          Kapcsolódó termékek <ArrowRight size={17} />
+          <Text>{'Kapcsolódó termékek '}</Text>
+          <ArrowRight size={17} />
         </a>
       </section>
       <Dialog
@@ -80,30 +105,36 @@ export default function Videos() {
         onOpenChange={(open) => !open && setSelected(null)}
       >
         <DialogContent className="video-dialog">
-          <DialogTitle>{selected?.title ?? 'Műtéti videó'}</DialogTitle>
+          <DialogTitle>
+            <Text>{selected?.title ?? 'Műtéti videó'}</Text>
+          </DialogTitle>
           <DialogDescription>
-            Valós műtéti felvétel · {selected?.duration} · InTissue
+            <Text>{'Valós műtéti felvétel · '}</Text>
+            <Text>{selected?.duration}</Text>
+            <Text>{' · InTissue '}</Text>
           </DialogDescription>
-          {selected && (
-            <>
-              <video
-                key={selected.src}
-                className="video-player"
-                src={selected.src}
-                controls
-                playsInline
-                preload="none"
-              />
-              <a
-                className="text-link"
-                href={selected.src}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Videó megnyitása külön ablakban ↗
-              </a>
-            </>
-          )}
+          <Text>
+            {selected && (
+              <>
+                <video
+                  key={selected.src}
+                  className="video-player"
+                  src={selected.src}
+                  controls
+                  playsInline
+                  preload="none"
+                />
+                <a
+                  className="text-link"
+                  href={selected.src}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Text>{'Videó megnyitása külön ablakban ↗ '}</Text>
+                </a>
+              </>
+            )}
+          </Text>
         </DialogContent>
       </Dialog>
     </SiteShell>

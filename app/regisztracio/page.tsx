@@ -1,4 +1,12 @@
 'use client';
+import {
+  useLanguage,
+  LanguageSwitcher,
+  Text,
+  LocalizedInput,
+  LocalizedButton,
+} from '@/app/language-provider';
+
 import { useState } from 'react';
 import {
   ArrowLeft,
@@ -11,6 +19,7 @@ import {
 import { Checkbox } from '@/components/ui/checkbox';
 import { usePortal, portalApi } from '../portal-provider';
 export default function Registration() {
+  const { language, t } = useLanguage();
   const { status, loading, error, start, refresh, logout } = usePortal();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
@@ -38,47 +47,81 @@ export default function Registration() {
     <>
       <header className="header">
         <a className="logo" href="/">
-          in<span>tissue</span>
-          <i>+</i>
+          <Text>{'in'}</Text>
+          <span>
+            <Text>{'tissue'}</Text>
+          </span>
+          <i>
+            <Text>{'+'}</Text>
+          </i>
         </a>
         <a className="text-link compact" href="/katalogus">
-          <ArrowLeft size={16} /> Vissza a katalógushoz
+          <ArrowLeft size={16} />
+          <Text>{' Vissza a katalógushoz '}</Text>
         </a>
+        <LanguageSwitcher />
       </header>
       <main className="registration">
         <aside>
-          <div className="eyebrow">SZAKMAI HOZZÁFÉRÉS</div>
+          <div className="eyebrow">
+            <Text>{'SZAKMAI HOZZÁFÉRÉS'}</Text>
+          </div>
           <h1>
-            Együtt a<br />
-            <em>biztos alapokért.</em>
+            <Text>{'Együtt a'}</Text>
+            <br />
+            <em>
+              <Text>{'biztos alapokért.'}</Text>
+            </em>
           </h1>
           <p>
-            Regisztráljon a térítési díjak megtekintéséhez és a
-            transzplantátumok igényléséhez.
+            <Text>
+              {
+                'Regisztráljon a térítési díjak megtekintéséhez és a transzplantátumok igényléséhez. '
+              }
+            </Text>
           </p>
           <ol className="steps">
             <li>
-              <span>01</span>
+              <span>
+                <Text>{'01'}</Text>
+              </span>
               <div>
-                <h3>Azonosítás</h3>
-                <p>Belépés, majd a szakmai adatok megadása.</p>
-              </div>
-            </li>
-            <li>
-              <span>02</span>
-              <div>
-                <h3>Pecsétszám ellenőrzése</h3>
+                <h3>
+                  <Text>{'Azonosítás'}</Text>
+                </h3>
                 <p>
-                  Név, pecsétszám és működési jogosultság egyeztetése az OKFŐ
-                  nyilvántartásával.
+                  <Text>{'Belépés, majd a szakmai adatok megadása.'}</Text>
                 </p>
               </div>
             </li>
             <li>
-              <span>03</span>
+              <span>
+                <Text>{'02'}</Text>
+              </span>
               <div>
-                <h3>Jóváhagyott hozzáférés</h3>
-                <p>Aktiválás az ellenőrzést követően.</p>
+                <h3>
+                  <Text>{'Pecsétszám ellenőrzése'}</Text>
+                </h3>
+                <p>
+                  <Text>
+                    {
+                      'Név, pecsétszám és működési jogosultság egyeztetése az OKFŐ nyilvántartásával. '
+                    }
+                  </Text>
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>
+                <Text>{'03'}</Text>
+              </span>
+              <div>
+                <h3>
+                  <Text>{'Jóváhagyott hozzáférés'}</Text>
+                </h3>
+                <p>
+                  <Text>{'Aktiválás az ellenőrzést követően.'}</Text>
+                </p>
               </div>
             </li>
           </ol>
@@ -88,166 +131,231 @@ export default function Registration() {
             target="_blank"
             rel="noreferrer"
           >
-            OKFŐ nyilvántartás megnyitása <ExternalLink size={15} />
+            <Text>{'OKFŐ nyilvántartás megnyitása '}</Text>
+            <ExternalLink size={15} />
           </a>
         </aside>
         <section className="form-card">
           <ShieldCheck size={32} strokeWidth={1.4} />
-          <h2>Orvosi regisztráció</h2>
-          {loading ? (
-            <p role="status">Belépési állapot ellenőrzése…</p>
-          ) : !status.active ? (
-            <>
-              <p>
-                Az InTissue bemutató szakmai felületére ChatGPT-fiókkal léphet
-                be. Ezután adhatja meg az orvosi adatait.
+          <h2>
+            <Text>{'Orvosi regisztráció'}</Text>
+          </h2>
+          <Text>
+            {loading ? (
+              <p role="status">
+                <Text>{'Belépési állapot ellenőrzése…'}</Text>
               </p>
-              {status.signedIn ? (
-                <button className="button wide" onClick={() => void start()}>
-                  Szakmai munkamenet megnyitása <ArrowRight size={16} />
-                </button>
-              ) : (
-                <a
-                  className="button wide"
-                  href="/signin-with-chatgpt?return_to=%2Fregisztracio"
-                  target="_top"
-                >
-                  Belépés ChatGPT-fiókkal <ArrowRight size={16} />
-                </a>
-              )}
-              <p className="fineprint">
-                A munkamenet 2 perc inaktivitás után lezárul.
-              </p>
-            </>
-          ) : status.doctor ? (
-            <>
-              <div
-                className={'status-box ' + (status.approved ? 'success' : '')}
-              >
-                <Clock3 size={22} />
-                <h3>
-                  {status.approved
-                    ? 'Jóváhagyott regisztráció'
-                    : status.doctor.status === 'rejected'
-                      ? 'A regisztráció nem került jóváhagyásra'
-                      : status.doctor.status === 'approved'
-                        ? 'Lejárt szakmai hozzáférés'
-                        : 'Ellenőrzésre vár'}
-                </h3>
+            ) : !status.active ? (
+              <>
                 <p>
-                  {status.approved
-                    ? 'A szakmai hozzáférése aktív. Megtekintheti a rögzített térítési díjakat.'
-                    : 'A térítési díjak és az igénylés csak érvényes, jóváhagyott regisztrációval érhetők el.'}
+                  <Text>
+                    {
+                      'Az InTissue bemutató szakmai felületére ChatGPT-fiókkal léphet be. Ezután adhatja meg az orvosi adatait. '
+                    }
+                  </Text>
                 </p>
+                <Text>
+                  {status.signedIn ? (
+                    <LocalizedButton
+                      className="button wide"
+                      onClick={() => void start()}
+                    >
+                      <Text>{'Szakmai munkamenet megnyitása '}</Text>
+                      <ArrowRight size={16} />
+                    </LocalizedButton>
+                  ) : (
+                    <a
+                      className="button wide"
+                      href="/signin-with-chatgpt?return_to=%2Fregisztracio"
+                      target="_top"
+                    >
+                      <Text>{'Belépés ChatGPT-fiókkal '}</Text>
+                      <ArrowRight size={16} />
+                    </a>
+                  )}
+                </Text>
+                <p className="fineprint">
+                  <Text>
+                    {'A munkamenet 2 perc inaktivitás után lezárul. '}
+                  </Text>
+                </p>
+              </>
+            ) : status.doctor ? (
+              <>
+                <div
+                  className={'status-box ' + (status.approved ? 'success' : '')}
+                >
+                  <Clock3 size={22} />
+                  <h3>
+                    <Text>
+                      {status.approved
+                        ? 'Jóváhagyott regisztráció'
+                        : status.doctor.status === 'rejected'
+                          ? 'A regisztráció nem került jóváhagyásra'
+                          : status.doctor.status === 'approved'
+                            ? 'Lejárt szakmai hozzáférés'
+                            : 'Ellenőrzésre vár'}
+                    </Text>
+                  </h3>
+                  <p>
+                    <Text>
+                      {status.approved
+                        ? 'A szakmai hozzáférése aktív. Megtekintheti a rögzített térítési díjakat.'
+                        : 'A térítési díjak és az igénylés csak érvényes, jóváhagyott regisztrációval érhetők el.'}
+                    </Text>
+                  </p>
+                </div>
+                <dl className="profile">
+                  <dt>
+                    <Text>{'Orvosi név'}</Text>
+                  </dt>
+                  <dd>
+                    <Text>{status.doctor.full_name}</Text>
+                  </dd>
+                  <dt>
+                    <Text>{'Pecsétszám'}</Text>
+                  </dt>
+                  <dd>
+                    <Text>{status.doctor.stamp}</Text>
+                  </dd>
+                  <dt>
+                    <Text>{'Intézmény'}</Text>
+                  </dt>
+                  <dd>
+                    <Text>{status.doctor.institution}</Text>
+                  </dd>
+                  <Text>
+                    {status.doctor.review_note && (
+                      <>
+                        <dt>
+                          <Text>{'Ellenőrzés eredménye'}</Text>
+                        </dt>
+                        <dd>
+                          <Text>{status.doctor.review_note}</Text>
+                        </dd>
+                      </>
+                    )}
+                  </Text>
+                </dl>
+                <Text>
+                  {status.approved && (
+                    <a href="/katalogus" className="button wide">
+                      <Text>{'Vissza a katalógushoz '}</Text>
+                      <ArrowRight size={16} />
+                    </a>
+                  )}
+                </Text>
+              </>
+            ) : (
+              <form onSubmit={submit}>
+                <p>
+                  <Text>
+                    {
+                      'A teljes orvosi nevét a nyilvántartásban szereplő formában adja meg. '
+                    }
+                  </Text>
+                </p>
+                <label>
+                  <Text>{'Teljes orvosi név '}</Text>
+                  <LocalizedInput
+                    name="fullName"
+                    autoComplete="name"
+                    placeholder="Dr. Vezetéknév Keresztnév"
+                    minLength={5}
+                    maxLength={160}
+                    required
+                  />
+                </label>
+                <label>
+                  <Text>{'Orvosi pecsétszám '}</Text>
+                  <LocalizedInput
+                    name="stamp"
+                    inputMode="numeric"
+                    placeholder="Nyilvántartási szám"
+                    pattern="[0-9]{1,10}"
+                    maxLength={10}
+                    required
+                  />
+                  <span className="field-help">
+                    <Text>
+                      {
+                        'A névvel együtt ellenőrizzük. A szám megadása még nem jelent jóváhagyást. '
+                      }
+                    </Text>
+                  </span>
+                </label>
+                <label>
+                  <Text>{'Intézmény / rendelő '}</Text>
+                  <LocalizedInput
+                    name="institution"
+                    autoComplete="organization"
+                    placeholder="Az intézmény neve"
+                    minLength={3}
+                    maxLength={200}
+                    required
+                  />
+                </label>
+                <label>
+                  <Text>{'E-mail-cím '}</Text>
+                  <LocalizedInput value={status.email || ''} disabled />
+                </label>
+                <label className="checkbox-label">
+                  <Checkbox
+                    checked={confirmed}
+                    onCheckedChange={(v) => setConfirmed(v === true)}
+                    aria-label={t('Adatok helyességének megerősítése')}
+                  />
+                  <span>
+                    <Text>
+                      {
+                        'Megerősítem, hogy a saját, valós szakmai adataimat adtam meg. '
+                      }
+                    </Text>
+                  </span>
+                </label>
+                <LocalizedButton
+                  className="button wide"
+                  disabled={busy || !confirmed}
+                  type="submit"
+                >
+                  <Text>{busy ? 'Mentés…' : 'Regisztráció beküldése'} </Text>
+                  <ArrowRight size={16} />
+                </LocalizedButton>
+                <p className="fineprint">
+                  <Text>
+                    {
+                      'Bemutatóverzió. Az adatokat a regisztráció ellenőrzéséhez tároljuk; a fiók nem válik automatikusan aktívvá. '
+                    }
+                  </Text>
+                </p>
+              </form>
+            )}
+          </Text>
+          <Text>
+            {(message || error) && (
+              <p className="error" role="alert">
+                <Text>{message || error}</Text>
+              </p>
+            )}
+          </Text>
+          <Text>
+            {status.active && (
+              <div className="account-actions">
+                <Text>
+                  {status.admin && (
+                    <a href="/admin">
+                      <Text>{'Adminisztráció '}</Text>
+                      <ArrowRight size={15} />
+                    </a>
+                  )}
+                </Text>
+                <LocalizedButton onClick={() => void logout()}>
+                  <LogOut size={15} />
+                  <Text>{' Kijelentkezés '}</Text>
+                </LocalizedButton>
               </div>
-              <dl className="profile">
-                <dt>Orvosi név</dt>
-                <dd>{status.doctor.full_name}</dd>
-                <dt>Pecsétszám</dt>
-                <dd>{status.doctor.stamp}</dd>
-                <dt>Intézmény</dt>
-                <dd>{status.doctor.institution}</dd>
-                {status.doctor.review_note && (
-                  <>
-                    <dt>Ellenőrzés eredménye</dt>
-                    <dd>{status.doctor.review_note}</dd>
-                  </>
-                )}
-              </dl>
-              {status.approved && (
-                <a href="/katalogus" className="button wide">
-                  Vissza a katalógushoz <ArrowRight size={16} />
-                </a>
-              )}
-            </>
-          ) : (
-            <form onSubmit={submit}>
-              <p>
-                A teljes orvosi nevét a nyilvántartásban szereplő formában adja
-                meg.
-              </p>
-              <label>
-                Teljes orvosi név
-                <input
-                  name="fullName"
-                  autoComplete="name"
-                  placeholder="Dr. Vezetéknév Keresztnév"
-                  minLength={5}
-                  maxLength={160}
-                  required
-                />
-              </label>
-              <label>
-                Orvosi pecsétszám
-                <input
-                  name="stamp"
-                  inputMode="numeric"
-                  placeholder="Nyilvántartási szám"
-                  pattern="[0-9]{1,10}"
-                  maxLength={10}
-                  required
-                />
-                <span className="field-help">
-                  A névvel együtt ellenőrizzük. A szám megadása még nem jelent
-                  jóváhagyást.
-                </span>
-              </label>
-              <label>
-                Intézmény / rendelő
-                <input
-                  name="institution"
-                  autoComplete="organization"
-                  placeholder="Az intézmény neve"
-                  minLength={3}
-                  maxLength={200}
-                  required
-                />
-              </label>
-              <label>
-                E-mail-cím
-                <input value={status.email || ''} disabled />
-              </label>
-              <label className="checkbox-label">
-                <Checkbox
-                  checked={confirmed}
-                  onCheckedChange={(v) => setConfirmed(v === true)}
-                  aria-label="Adatok helyességének megerősítése"
-                />
-                <span>
-                  Megerősítem, hogy a saját, valós szakmai adataimat adtam meg.
-                </span>
-              </label>
-              <button
-                className="button wide"
-                disabled={busy || !confirmed}
-                type="submit"
-              >
-                {busy ? 'Mentés…' : 'Regisztráció beküldése'}{' '}
-                <ArrowRight size={16} />
-              </button>
-              <p className="fineprint">
-                Bemutatóverzió. Az adatokat a regisztráció ellenőrzéséhez
-                tároljuk; a fiók nem válik automatikusan aktívvá.
-              </p>
-            </form>
-          )}
-          {(message || error) && (
-            <p className="error" role="alert">
-              {message || error}
-            </p>
-          )}
-          {status.active && (
-            <div className="account-actions">
-              {status.admin && (
-                <a href="/admin">
-                  Adminisztráció <ArrowRight size={15} />
-                </a>
-              )}
-              <button onClick={() => void logout()}>
-                <LogOut size={15} /> Kijelentkezés
-              </button>
-            </div>
-          )}
+            )}
+          </Text>
         </section>
       </main>
     </>

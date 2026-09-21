@@ -1,6 +1,6 @@
 export const team = [
   {
-    name: 'Dr. Lajos Csönge M.D.',
+    name: 'Dr. Csönge Lajos',
     role: 'Patológus',
     details: [
       'A szövet- és sejtbankolás, valamint a regeneratív medicina magyar bizottságának elnöke',
@@ -26,7 +26,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Ágnes Bozsik',
+    name: 'Bozsik Ágnes',
     role: 'Bioanyagok és bioszövet-előállítás',
     details: [
       'Szövetmérnöki munka humán anyagokkal',
@@ -52,7 +52,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Zoltán Tóth-Bagi',
+    name: 'Dr. Tóth-Bagi Zoltán',
     role: 'Arc-, állcsont- és szájsebész',
     details: [
       'Regeneratív medicina',
@@ -73,7 +73,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Róbert Gyuris M.D.',
+    name: 'Dr. Gyuris Róbert',
     role: 'Szájsebész',
     details: [
       'GBR- és GTR-technikák InTissue-anyagokkal',
@@ -94,7 +94,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Szilárd Berey M.D.',
+    name: 'Dr. Berey Szilárd',
     role: 'Gerincsebész és ortopéd sebész',
     details: [
       'Regeneratív medicina',
@@ -126,7 +126,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Mariann Tálos',
+    name: 'Dr. Tálos Mariann',
     role: 'Szájsebész és parodontológus',
     details: [
       'GBR- és GTR-technikák InTissue-anyagokkal',
@@ -138,7 +138,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Annamária Weithaler',
+    name: 'Dr. Weithaler Annamária',
     role: 'Gyermekgyógyász',
     details: ['Hungarian Board of Cell & Tissue Regenerative Medicine'],
     image: '/images/team/494f80_5f2ad11b48884115be62a1eca9f859f5~mv2.webp',
@@ -146,7 +146,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Zsuzsanna Barna',
+    name: 'Dr. Barna Zsuzsanna',
     role: 'Orális mikrobiológiai szakértő',
     details: ['Hungarian Board of Cell & Tissue Regenerative Medicine'],
     image: '/images/team/494f80_60b33b734c764c00b7344d1b89f6d304~mv2.webp',
@@ -154,7 +154,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Pál Tuska',
+    name: 'Dr. Tuska Pál',
     role: 'Nagyállat-sebész',
     details: [
       'Regeneratív medicina',
@@ -167,7 +167,7 @@ export const team = [
     category: 'animal',
   },
   {
-    name: 'Dr. Tamás Ipolyi',
+    name: 'Dr. Ipolyi Tamás',
     role: 'Állatorvos, ortopéd sebész',
     details: [
       'Kisállatok regeneratív ellátása',
@@ -181,7 +181,7 @@ export const team = [
     category: 'animal',
   },
   {
-    name: 'Dr. Csilla Simon',
+    name: 'Dr. Simon Csilla',
     role: 'Kisállat-sebész',
     details: [
       'Regeneratív medicina',

@@ -1,19 +1,29 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { cookies } from 'next/headers';
+import { LanguageProvider } from './language-provider';
 import { PortalProvider } from './portal-provider';
-export const metadata: Metadata = {
-  title: 'InTissue | Intelligent Tissue Solutions',
-  icons: { icon: '/favicon.svg' },
-  description:
-    'Humán DIZG csontblokkok és InTissue állatgyógyászati csontgraftok katalógusa. Orvosi regisztráció, ellenőrzött hozzáférés és térítési díjak.',
-};
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  const en = (await cookies()).get('intissue_language')?.value === 'en';
+  return {
+    title: 'InTissue | Intelligent Tissue Solutions',
+    icons: { icon: '/favicon.svg' },
+    description: en
+      ? 'Human DIZG bone blocks and InTissue veterinary grafts. Product profiles, professional resources and verified access to reimbursement fees.'
+      : 'Humán DIZG csontblokkok és InTissue állatgyógyászati graftok. Termékprofilok, szakmai információk és ellenőrzött hozzáférés a térítési díjakhoz.',
+  };
+}
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const language =
+    (await cookies()).get('intissue_language')?.value === 'en' ? 'en' : 'hu';
   return (
-    <html lang="hu">
+    <html lang={language}>
       <body>
-        <PortalProvider>{children}</PortalProvider>
+        <LanguageProvider language={language}>
+          <PortalProvider>{children}</PortalProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

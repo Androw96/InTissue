@@ -1,3 +1,4 @@
+import { Text, LocalizedImage } from '@/app/language-provider';
 import SiteShell, { PageIntro } from '../site-shell';
 import VeterinaryCatalog from '../veterinary-catalog';
 const info = [
@@ -44,86 +45,120 @@ export default function Animal() {
       />
       <div className="site-wrap">
         <p className="notice-panel">
-          Az InTissue eredeti tájékoztatója ISO 9001:2015 és ISO 13485:2016
-          tanúsítású állatgyógyászati szövetbankként mutatja be a szervezetet.
+          <Text>
+            {
+              'Az InTissue eredeti tájékoztatója ISO 9001:2015 és ISO 13485:2016 tanúsítású állatgyógyászati szövetbankként mutatja be a szervezetet. '
+            }
+          </Text>
         </p>
       </div>
       <VeterinaryCatalog />
       <section className="site-wrap content-section">
-        <p className="eyebrow">GYÁRTÓI TÁJÉKOZTATÓ</p>
-        <h2>Felhasználás és minőségbiztosítás</h2>
-        <p>
-          A gyártói információk magyar nyelvű összefoglalója. A konkrét termék
-          használatakor a csomagoláshoz tartozó, aktuális használati útmutató az
-          irányadó.
+        <p className="eyebrow">
+          <Text>{'GYÁRTÓI TÁJÉKOZTATÓ'}</Text>
         </p>
-        {info.map(([title, text]) => (
-          <details key={title}>
-            <summary>{title}</summary>
-            <div>
-              <p>{text}</p>
-            </div>
-          </details>
-        ))}
+        <h2>
+          <Text>{'Felhasználás és minőségbiztosítás'}</Text>
+        </h2>
+        <p>
+          <Text>
+            {
+              'A gyártói információk magyar nyelvű összefoglalója. A konkrét termék használatakor a csomagoláshoz tartozó, aktuális használati útmutató az irányadó. '
+            }
+          </Text>
+        </p>
+        <Text>
+          {info.map(([title, text]) => (
+            <details key={title}>
+              <summary>
+                <Text>{title}</Text>
+              </summary>
+              <div>
+                <p>
+                  <Text>{text}</Text>
+                </p>
+              </div>
+            </details>
+          ))}
+        </Text>
         <p className="source-note">
           <a
             href="https://intissue.com/animal"
             target="_blank"
             rel="noreferrer"
           >
-            Eredeti, teljes angol nyelvű használati útmutató ↗
-          </a>{' '}
-          · Gyártó: InTissue (Hisztolabor Ltd), 9026 Győr, Kocsag utca 2.
+            <Text>{'Eredeti, teljes angol nyelvű használati útmutató ↗ '}</Text>
+          </a>
+          <Text> </Text>
+          <Text>
+            {'· Gyártó: InTissue (Hisztolabor Ltd), 9026 Győr, Kocsag utca 2. '}
+          </Text>
         </p>
-        <h2>A csontregeneráció fogalmai</h2>
+        <h2>
+          <Text>{'A csontregeneráció fogalmai'}</Text>
+        </h2>
         <p>
-          Az eredeti ismertető az ideális csontgraft tulajdonságait az alábbi
-          fogalmakkal mutatja be. Ezek nem mindegyike jellemző minden termékre.
+          <Text>
+            {
+              'Az eredeti ismertető az ideális csontgraft tulajdonságait az alábbi fogalmakkal mutatja be. Ezek nem mindegyike jellemző minden termékre. '
+            }
+          </Text>
         </p>
         <div className="content-grid">
-          {[
-            [
-              'Oszteokonduktivitás',
-              'A befogadó szövet sejtjeinek és ereinek benövését támogató térbeli váz.',
-            ],
-            [
-              'Oszteoinduktivitás',
-              'A csontképződést ösztönző biológiai hatás, amelyhez például BMP-fehérjék járulhatnak hozzá.',
-            ],
-            [
-              'Oszteogén tulajdonság',
-              'Aktív csontképző sejtek jelenléte. Ez nem jelenti azt, hogy a sterilizált, fagyasztva szárított termékek élő sejteket tartalmaznak.',
-            ],
-            [
-              'Teljes átépülés',
-              'A graft felszívódása és saját, új csontszövettel történő helyettesítése.',
-            ],
-          ].map(([title, text]) => (
-            <article className="content-card" key={title}>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
+          <Text>
+            {[
+              [
+                'Oszteokonduktivitás',
+                'A befogadó szövet sejtjeinek és ereinek benövését támogató térbeli váz.',
+              ],
+              [
+                'Oszteoinduktivitás',
+                'A csontképződést ösztönző biológiai hatás, amelyhez például BMP-fehérjék járulhatnak hozzá.',
+              ],
+              [
+                'Oszteogén tulajdonság',
+                'Aktív csontképző sejtek jelenléte. Ez nem jelenti azt, hogy a sterilizált, fagyasztva szárított termékek élő sejteket tartalmaznak.',
+              ],
+              [
+                'Teljes átépülés',
+                'A graft felszívódása és saját, új csontszövettel történő helyettesítése.',
+              ],
+            ].map(([title, text]) => (
+              <article className="content-card" key={title}>
+                <h3>
+                  <Text>{title}</Text>
+                </h3>
+                <p>
+                  <Text>{text}</Text>
+                </p>
+              </article>
+            ))}
+          </Text>
         </div>
         <div className="content-grid" style={{ marginTop: 35 }}>
           <figure>
-            <img
+            <LocalizedImage
               src="/images/newboneformation.webp"
               alt="Gyártói ábra: új csontképződés BMG alkalmazása után"
               loading="lazy"
             />
             <figcaption>
-              A gyártó által bemutatott csontképződés hat hónappal BMG
-              alkalmazása után, ló fogászati esetében.
+              <Text>
+                {
+                  'A gyártó által bemutatott csontképződés hat hónappal BMG alkalmazása után, ló fogászati esetében. '
+                }
+              </Text>
             </figcaption>
           </figure>
           <figure>
-            <img
+            <LocalizedImage
               src="/images/bmgremodelling.webp"
               alt="BMG átépülését bemutató gyártói ábra"
               loading="lazy"
             />
-            <figcaption>BMG átépülése – az InTissue eredeti ábrája.</figcaption>
+            <figcaption>
+              <Text>{'BMG átépülése – az InTissue eredeti ábrája.'}</Text>
+            </figcaption>
           </figure>
         </div>
         <a
@@ -131,7 +166,7 @@ export default function Animal() {
           href="/videos#animal"
           style={{ marginTop: 35 }}
         >
-          Állatgyógyászati videók →
+          <Text>{'Állatgyógyászati videók → '}</Text>
         </a>
       </section>
     </SiteShell>

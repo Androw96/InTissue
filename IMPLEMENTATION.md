@@ -62,3 +62,10 @@ A főoldal bemutatkozó szövege, a gyártó neve/címe, az általános tárolá
 - Legal page distinguishes original website practices from this Sites portal, rather than copying original claims that there are no accounts or external video requests.
 - Original source assets and page data inspected from https://intissue.com, including current sitemap and source bundles, on 2026-09-21. Team/product images retained from original source; media rights remain with their owners.
 - Typecheck and all nine primary route responses verified. All 16 video URLs respond 200 with video/mp4. Interactive visual QA unavailable because the Mac was locked; no UI settings changed.
+
+## Hungarian/English site and internal product profiles
+
+- HU/EN switch is available in the shared navigation and standalone professional/admin headers. A one-year SameSite=Lax preference cookie persists the language; the server renders the selected language, matching html lang and metadata. No translation service receives user data.
+- Shared translation dictionary covers the presentation pages, catalog, product variants, team, video titles, professional access forms and feedback. Expert display names are explicit Hungarian/English mappings, including Kónya János / János Kónya and the corrected Tálos spelling.
+- Manufacturer-detail actions now lead to `/termekek/spongiosa`, `/termekek/ilium`, `/termekek/wedge` within InTissue. Profiles include existing verified product data, product codes and pack sizes without redirecting to DIZG. Manufacturer identity is retained accurately.
+- Checked 11 routes in both languages, rendered expert names, product profile content and unknown-product 404. Seven translation and access-policy tests pass; existing fee gates and two-minute session policy are unchanged.

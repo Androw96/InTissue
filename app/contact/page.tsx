@@ -1,8 +1,17 @@
 'use client';
+import {
+  useLanguage,
+  Text,
+  LocalizedInput,
+  LocalizedTextarea,
+  LocalizedButton,
+} from '@/app/language-provider';
+
 import { useState } from 'react';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import SiteShell, { PageIntro } from '../site-shell';
 export default function Contact() {
+  const { language, t } = useLanguage();
   const [prepared, setPrepared] = useState(false);
   return (
     <SiteShell>
@@ -13,24 +22,29 @@ export default function Contact() {
       />
       <section className="site-wrap content-section content-grid">
         <div className="content-card">
-          <h2 style={{ marginTop: 0 }}>Üzenet előkészítése</h2>
+          <h2 style={{ marginTop: 0 }}>
+            <Text>{'Üzenet előkészítése'}</Text>
+          </h2>
           <p style={{ marginBottom: 25 }}>
-            Az űrlap kitöltése után megnyitjuk a levelezőprogramját az
-            előkészített üzenettel. A küldést ott tudja véglegesíteni.
+            <Text>
+              {
+                'Az űrlap kitöltése után megnyitjuk a levelezőprogramját az előkészített üzenettel. A küldést ott tudja véglegesíteni. '
+              }
+            </Text>
           </p>
           <form
             className="contact-form"
             onSubmit={(e) => {
               e.preventDefault();
               const f = new FormData(e.currentTarget);
-              const body = `Név: ${f.get('name')}\nE-mail: ${f.get('email')}\nOrszág / intézmény: ${f.get('organization')}\nTéma: ${f.get('topic')}\n\n${f.get('message')}`;
+              const body = `${t('Név')}: ${f.get('name')}\nE-mail: ${f.get('email')}\n${language === 'en' ? 'Country / institution' : 'Ország / intézmény'}: ${f.get('organization')}\n${t('Megkeresés témája')}: ${f.get('topic')}\n\n${f.get('message')}`;
               window.location.href = `mailto:orsi.hajas@gmail.com?subject=${encodeURIComponent('InTissue – ' + f.get('topic'))}&body=${encodeURIComponent(body)}`;
               setPrepared(true);
             }}
           >
             <label htmlFor="contact-name">
-              Név
-              <input
+              <Text>{'Név '}</Text>
+              <LocalizedInput
                 id="contact-name"
                 name="name"
                 autoComplete="name"
@@ -39,8 +53,8 @@ export default function Contact() {
               />
             </label>
             <label htmlFor="contact-email">
-              E-mail-cím
-              <input
+              <Text>{'E-mail-cím '}</Text>
+              <LocalizedInput
                 id="contact-email"
                 name="email"
                 type="email"
@@ -50,8 +64,8 @@ export default function Contact() {
               />
             </label>
             <label htmlFor="contact-organization">
-              Ország / intézmény (nem kötelező)
-              <input
+              <Text>{'Ország / intézmény (nem kötelező) '}</Text>
+              <LocalizedInput
                 id="contact-organization"
                 name="organization"
                 autoComplete="organization"
@@ -59,18 +73,28 @@ export default function Contact() {
               />
             </label>
             <label htmlFor="contact-topic">
-              Megkeresés témája
+              <Text>{'Megkeresés témája '}</Text>
               <select id="contact-topic" name="topic">
-                <option>Általános érdeklődés</option>
-                <option>Humán termékinformáció</option>
-                <option>Állatgyógyászati termékinformáció</option>
-                <option>Szakmai együttműködés</option>
-                <option>Termékkel kapcsolatos észrevétel</option>
+                <option>
+                  <Text>{'Általános érdeklődés'}</Text>
+                </option>
+                <option>
+                  <Text>{'Humán termékinformáció'}</Text>
+                </option>
+                <option>
+                  <Text>{'Állatgyógyászati termékinformáció'}</Text>
+                </option>
+                <option>
+                  <Text>{'Szakmai együttműködés'}</Text>
+                </option>
+                <option>
+                  <Text>{'Termékkel kapcsolatos észrevétel'}</Text>
+                </option>
               </select>
             </label>
             <label htmlFor="contact-message">
-              Üzenet
-              <textarea
+              <Text>{'Üzenet '}</Text>
+              <LocalizedTextarea
                 id="contact-message"
                 name="message"
                 rows={6}
@@ -79,53 +103,87 @@ export default function Contact() {
               />
             </label>
             <p className="source-note" style={{ margin: 0 }}>
-              Páciensazonosítót és egészségügyi adatot ne adjon meg.{' '}
-              <a href="/legal">Adatkezelési információk</a>
+              <Text>
+                {'Páciensazonosítót és egészségügyi adatot ne adjon meg.'}
+              </Text>
+              <Text> </Text>
+              <a href="/legal">
+                <Text>{'Adatkezelési információk'}</Text>
+              </a>
             </p>
-            <button className="button" type="submit">
-              Megnyitás a levelezőben <Mail size={17} />
-            </button>
-            {prepared && (
-              <p role="status" className="notice-panel">
-                Az üzenetet előkészítettük. Küldje el a levelezőprogramjában. Ha
-                nem nyílt meg, írjon közvetlenül az orsi.hajas@gmail.com címre.
-              </p>
-            )}
+            <LocalizedButton className="button" type="submit">
+              <Text>{'Megnyitás a levelezőben '}</Text>
+              <Mail size={17} />
+            </LocalizedButton>
+            <Text>
+              {prepared && (
+                <p role="status" className="notice-panel">
+                  <Text>
+                    {
+                      'Az üzenetet előkészítettük. Küldje el a levelezőprogramjában. Ha nem nyílt meg, írjon közvetlenül az orsi.hajas@gmail.com címre. '
+                    }
+                  </Text>
+                </p>
+              )}
+            </Text>
           </form>
         </div>
         <aside className="contact-meta">
-          <p className="eyebrow">INTISSUE</p>
-          <h2>Elérhetőségek</h2>
-          <h3>Kapcsolattartó</h3>
-          <p>Hajas Orsolya</p>
-          <a href="mailto:orsi.hajas@gmail.com">orsi.hajas@gmail.com</a>
-          <h3>Az eredeti weboldal üzemeltetője</h3>
-          <p>
-            BARLINKA Company Kft.
-            <br />
-            8174 Balatonkenese,
-            <br />
-            Kárpátalja utca 18.
+          <p className="eyebrow">
+            <Text>{'INTISSUE'}</Text>
           </p>
-          <h3>Szakmai termékkatalógus</h3>
+          <h2>
+            <Text>{'Elérhetőségek'}</Text>
+          </h2>
+          <h3>
+            <Text>{'Kapcsolattartó'}</Text>
+          </h3>
           <p>
-            A humán igénylés és a térítési díjak elérése ellenőrzött orvosi
-            regisztrációhoz kötött.
+            <Text>{'Hajas Orsolya'}</Text>
+          </p>
+          <a href="mailto:orsi.hajas@gmail.com">
+            <Text>{'orsi.hajas@gmail.com'}</Text>
+          </a>
+          <h3>
+            <Text>{'Az eredeti weboldal üzemeltetője'}</Text>
+          </h3>
+          <p>
+            <Text>{'BARLINKA Company Kft. '}</Text>
+            <br />
+            <Text>{'8174 Balatonkenese, '}</Text>
+            <br />
+            <Text>{'Kárpátalja utca 18. '}</Text>
+          </p>
+          <h3>
+            <Text>{'Szakmai termékkatalógus'}</Text>
+          </h3>
+          <p>
+            <Text>
+              {
+                'A humán igénylés és a térítési díjak elérése ellenőrzött orvosi regisztrációhoz kötött. '
+              }
+            </Text>
           </p>
           <a className="button outline" href="/katalogus">
-            A katalógushoz →
+            <Text>{'A katalógushoz → '}</Text>
           </a>
-          <h3>Eredeti kapcsolatfelvételi űrlap</h3>
+          <h3>
+            <Text>{'Eredeti kapcsolatfelvételi űrlap'}</Text>
+          </h3>
           <p>
-            Az InTissue eredeti oldalán általános megkeresés és állatgyógyászati
-            termékigénylés is összeállítható.
+            <Text>
+              {
+                'Az InTissue eredeti oldalán általános megkeresés és állatgyógyászati termékigénylés is összeállítható. '
+              }
+            </Text>
           </p>
           <a
             href="https://intissue.com/contact"
             target="_blank"
             rel="noreferrer"
           >
-            Az eredeti űrlap megnyitása{' '}
+            <Text>{'Az eredeti űrlap megnyitása'}</Text>
+            <Text> </Text>
             <ArrowUpRight size={14} style={{ display: 'inline' }} />
           </a>
         </aside>

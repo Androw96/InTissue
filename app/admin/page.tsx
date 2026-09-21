@@ -1,4 +1,13 @@
 'use client';
+import {
+  useLanguage,
+  LanguageSwitcher,
+  Text,
+  LocalizedInput,
+  LocalizedTextarea,
+  LocalizedButton,
+} from '@/app/language-provider';
+
 import { useEffect, useState } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { products } from '@/lib/products';
@@ -13,6 +22,7 @@ type Doctor = {
   valid_until: number | null;
 };
 export default function Admin() {
+  const { language, t } = useLanguage();
   const { status, loading } = usePortal();
   const [data, setData] = useState<{
     doctors: Doctor[];
@@ -42,97 +52,161 @@ export default function Admin() {
     <>
       <header className="header">
         <a className="logo" href="/">
-          in<span>tissue</span>
-          <i>+</i>
+          <Text>{'in'}</Text>
+          <span>
+            <Text>{'tissue'}</Text>
+          </span>
+          <i>
+            <Text>{'+'}</Text>
+          </i>
         </a>
-        <a href="/regisztracio">Szakmai fiókom →</a>
+        <a href="/regisztracio">
+          <Text>{'Szakmai fiókom →'}</Text>
+        </a>
+        <LanguageSwitcher />
       </header>
       <main className="admin-page">
-        <div className="eyebrow">INTISSUE ADMINISZTRÁCIÓ</div>
-        <h1>Regisztrációk és térítési díjak</h1>
-        {loading ? (
-          <p>Jogosultság ellenőrzése…</p>
-        ) : !status.admin || !status.active ? (
-          <div className="notice">
-            Ehhez a felülethez beállított adminisztrátori jogosultság és aktív
-            munkamenet szükséges.{' '}
-            <a href="/regisztracio" className="text-link">
-              Belépés →
-            </a>
-          </div>
-        ) : (
-          <>
-            {message && (
-              <p className="error" role="alert">
-                {message}
-              </p>
-            )}
-            <section className="admin-panel">
-              <h2>Orvosi regisztrációk</h2>
-              <p className="admin-note">
-                Ellenőrizze a név és pecsétszám egyezését, az aktív működési
-                jogosultságot és a regisztráló személyazonosságát.{' '}
-                <a
-                  href="https://kereso.enkk.hu/"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ textDecoration: 'underline' }}
-                >
-                  OKFŐ kereső megnyitása ↗
-                </a>
-              </p>
-              {data?.doctors.length ? (
-                data.doctors.map((d) => (
-                  <Review key={d.user_id} doctor={d} done={load} />
-                ))
-              ) : (
-                <p className="empty-note">Nincs beküldött regisztráció.</p>
-              )}
-            </section>
-            <section className="admin-panel">
-              <h2>Térítési díjak</h2>
-              <p className="admin-note">
-                Egész forintban, kiszerelésenként adja meg a térítési díjat.
-                Csak hiteles díjtáblázat alapján töltse ki.
-              </p>
-              <div className="admin-grid">
-                {products.flatMap((p) =>
-                  p.variants.map((v) => (
-                    <Fee
-                      key={v.sku}
-                      sku={v.sku}
-                      label={v.label}
-                      amount={data?.fees.find((f) => f.sku === v.sku)?.amount}
-                      done={load}
-                    />
-                  )),
+        <div className="eyebrow">
+          <Text>{'INTISSUE ADMINISZTRÁCIÓ'}</Text>
+        </div>
+        <h1>
+          <Text>{'Regisztrációk és térítési díjak'}</Text>
+        </h1>
+        <Text>
+          {loading ? (
+            <p>
+              <Text>{'Jogosultság ellenőrzése…'}</Text>
+            </p>
+          ) : !status.admin || !status.active ? (
+            <div className="notice">
+              <Text>
+                {
+                  'Ehhez a felülethez beállított adminisztrátori jogosultság és aktív munkamenet szükséges.'
+                }
+              </Text>
+              <Text> </Text>
+              <a href="/regisztracio" className="text-link">
+                <Text>{'Belépés → '}</Text>
+              </a>
+            </div>
+          ) : (
+            <>
+              <Text>
+                {message && (
+                  <p className="error" role="alert">
+                    <Text>{message}</Text>
+                  </p>
                 )}
-              </div>
-            </section>
-            <section className="admin-panel">
-              <h2>Beérkezett igénylések</h2>
-              {data?.requests.length ? (
-                data.requests.map((r) => (
-                  <div key={r.id} className="admin-record">
-                    <h3>
-                      {r.full_name} · {r.sku} · {r.quantity} db
-                    </h3>
-                    <p>
-                      {r.email} · Összes térítési díj:{' '}
-                      {(r.fee * r.quantity).toLocaleString('hu-HU')} Ft
+              </Text>
+              <section className="admin-panel">
+                <h2>
+                  <Text>{'Orvosi regisztrációk'}</Text>
+                </h2>
+                <p className="admin-note">
+                  <Text>
+                    {
+                      'Ellenőrizze a név és pecsétszám egyezését, az aktív működési jogosultságot és a regisztráló személyazonosságát.'
+                    }
+                  </Text>
+                  <Text> </Text>
+                  <a
+                    href="https://kereso.enkk.hu/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    <Text>{'OKFŐ kereső megnyitása ↗ '}</Text>
+                  </a>
+                </p>
+                <Text>
+                  {data?.doctors.length ? (
+                    data.doctors.map((d) => (
+                      <Review key={d.user_id} doctor={d} done={load} />
+                    ))
+                  ) : (
+                    <p className="empty-note">
+                      <Text>{'Nincs beküldött regisztráció.'}</Text>
                     </p>
-                    <p className="fineprint">
-                      Azonosító: {r.id} · Rögzített igénylés, visszaigazolás
-                      szükséges.
+                  )}
+                </Text>
+              </section>
+              <section className="admin-panel">
+                <h2>
+                  <Text>{'Térítési díjak'}</Text>
+                </h2>
+                <p className="admin-note">
+                  <Text>
+                    {
+                      'Egész forintban, kiszerelésenként adja meg a térítési díjat. Csak hiteles díjtáblázat alapján töltse ki. '
+                    }
+                  </Text>
+                </p>
+                <div className="admin-grid">
+                  <Text>
+                    {products.flatMap((p) =>
+                      p.variants.map((v) => (
+                        <Fee
+                          key={v.sku}
+                          sku={v.sku}
+                          label={v.label}
+                          amount={
+                            data?.fees.find((f) => f.sku === v.sku)?.amount
+                          }
+                          done={load}
+                        />
+                      )),
+                    )}
+                  </Text>
+                </div>
+              </section>
+              <section className="admin-panel">
+                <h2>
+                  <Text>{'Beérkezett igénylések'}</Text>
+                </h2>
+                <Text>
+                  {data?.requests.length ? (
+                    data.requests.map((r) => (
+                      <div key={r.id} className="admin-record">
+                        <h3>
+                          <Text>{r.full_name}</Text>
+                          <Text>{' · '}</Text>
+                          <Text>{r.sku}</Text>
+                          <Text>{' · '}</Text>
+                          <Text>{r.quantity}</Text>
+                          <Text>{' db '}</Text>
+                        </h3>
+                        <p>
+                          <Text>{r.email}</Text>
+                          <Text>{' · Összes térítési díj:'}</Text>
+                          <Text> </Text>
+                          <Text>
+                            {(r.fee * r.quantity).toLocaleString(
+                              language === 'en' ? 'en-GB' : 'hu-HU',
+                            )}
+                          </Text>
+                          <Text>{' Ft '}</Text>
+                        </p>
+                        <p className="fineprint">
+                          <Text>{'Azonosító: '}</Text>
+                          <Text>{r.id}</Text>
+                          <Text>
+                            {
+                              ' · Rögzített igénylés, visszaigazolás szükséges. '
+                            }
+                          </Text>
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="empty-note">
+                      <Text>{'Nincs rögzített igénylés.'}</Text>
                     </p>
-                  </div>
-                ))
-              ) : (
-                <p className="empty-note">Nincs rögzített igénylés.</p>
-              )}
-            </section>
-          </>
-        )}
+                  )}
+                </Text>
+              </section>
+            </>
+          )}
+        </Text>
       </main>
     </>
   );
@@ -176,27 +250,34 @@ function Review({
   return (
     <div className="admin-record">
       <h3>
-        {d.full_name} · {d.stamp}
+        <Text>{d.full_name}</Text>
+        <Text>{' · '}</Text>
+        <Text>{d.stamp}</Text>
       </h3>
       <p>
-        {d.email} · {d.institution}
+        <Text>{d.email}</Text>
+        <Text>{' · '}</Text>
+        <Text>{d.institution}</Text>
       </p>
       <p>
-        Állapot:{' '}
-        {d.status === 'approved'
-          ? 'Jóváhagyott'
-          : d.status === 'rejected'
-            ? 'Elutasított'
-            : 'Ellenőrzésre vár'}
+        <Text>{'Állapot:'}</Text>
+        <Text> </Text>
+        <Text>
+          {d.status === 'approved'
+            ? 'Jóváhagyott'
+            : d.status === 'rejected'
+              ? 'Elutasított'
+              : 'Ellenőrzésre vár'}
+        </Text>
       </p>
       <form onSubmit={submit}>
         <label>
-          Működési nyilvántartás érvényes eddig
-          <input type="date" name="validUntil" />
+          <Text>{'Működési nyilvántartás érvényes eddig '}</Text>
+          <LocalizedInput type="date" name="validUntil" />
         </label>
         <label>
-          Ellenőrzés eredménye / indoklás
-          <textarea
+          <Text>{'Ellenőrzés eredménye / indoklás '}</Text>
+          <LocalizedTextarea
             name="note"
             minLength={10}
             maxLength={1500}
@@ -211,7 +292,9 @@ function Review({
             aria-label="Nyilvántartási egyezés"
           />
           <span>
-            A név és pecsétszám egyezik, a működési jogosultság aktív.
+            <Text>
+              {'A név és pecsétszám egyezik, a működési jogosultság aktív. '}
+            </Text>
           </span>
         </label>
         <label className="checkbox-label">
@@ -220,30 +303,36 @@ function Review({
             onCheckedChange={(v) => setIdentity(v === true)}
             aria-label="Személyazonosság ellenőrzése"
           />
-          <span>A regisztráló személyazonosságát külön ellenőriztem.</span>
+          <span>
+            <Text>
+              {'A regisztráló személyazonosságát külön ellenőriztem.'}
+            </Text>
+          </span>
         </label>
-        <button
+        <LocalizedButton
           type="submit"
           value="approved"
           className="button"
           disabled={busy || !registry || !identity}
         >
-          Jóváhagyás
-        </button>
-        <button
+          <Text>{'Jóváhagyás '}</Text>
+        </LocalizedButton>
+        <LocalizedButton
           type="submit"
           value="rejected"
           className="button outline"
           disabled={busy}
         >
-          Elutasítás / hozzáférés visszavonása
-        </button>
+          <Text>{'Elutasítás / hozzáférés visszavonása '}</Text>
+        </LocalizedButton>
       </form>
-      {msg && (
-        <p role="status" className="notice">
-          {msg}
-        </p>
-      )}
+      <Text>
+        {msg && (
+          <p role="status" className="notice">
+            <Text>{msg}</Text>
+          </p>
+        )}
+      </Text>
     </div>
   );
 }
@@ -277,11 +366,15 @@ function Fee({
   }
   return (
     <form onSubmit={submit}>
-      <strong>{sku}</strong>
-      <p className="fineprint">{label}</p>
+      <strong>
+        <Text>{sku}</Text>
+      </strong>
+      <p className="fineprint">
+        <Text>{label}</Text>
+      </p>
       <label>
-        Térítési díj / kiszerelés (Ft)
-        <input
+        <Text>{'Térítési díj / kiszerelés (Ft) '}</Text>
+        <LocalizedInput
           key={amount}
           name="amount"
           type="number"
@@ -292,14 +385,16 @@ function Fee({
           defaultValue={amount}
         />
       </label>
-      <button type="submit" className="button small" disabled={busy}>
-        Mentés
-      </button>
-      {msg && (
-        <p className="fineprint" role="status">
-          {msg}
-        </p>
-      )}
+      <LocalizedButton type="submit" className="button small" disabled={busy}>
+        <Text>{'Mentés '}</Text>
+      </LocalizedButton>
+      <Text>
+        {msg && (
+          <p className="fineprint" role="status">
+            <Text>{msg}</Text>
+          </p>
+        )}
+      </Text>
     </form>
   );
 }

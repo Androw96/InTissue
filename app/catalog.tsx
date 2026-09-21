@@ -1,4 +1,12 @@
 'use client';
+import {
+  useLanguage,
+  Text,
+  LocalizedImage,
+  LocalizedInput,
+  LocalizedButton,
+} from '@/app/language-provider';
+
 import { useState, useEffect } from 'react';
 import VeterinaryCatalog from './veterinary-catalog';
 import { SiteHeader, SiteFooter } from './site-shell';
@@ -33,13 +41,15 @@ type RequestRow = {
   fee: number;
   created_at: number;
 };
-const money = (n: number) =>
-  new Intl.NumberFormat('hu-HU', {
-    style: 'currency',
-    currency: 'HUF',
-    maximumFractionDigits: 0,
-  }).format(n);
 export default function Catalog() {
+  const { language, t } = useLanguage();
+  const money = (n: number) =>
+    new Intl.NumberFormat(language === 'en' ? 'en-GB' : 'hu-HU', {
+      style: 'currency',
+      currency: 'HUF',
+      maximumFractionDigits: 0,
+    }).format(n);
+
   const { status, logout } = usePortal();
   const [selected, setSelected] = useState<Product | null>(null);
   const [fees, setFees] = useState<Record<string, number>>({});
@@ -161,168 +171,265 @@ export default function Catalog() {
     <>
       <SiteHeader />
       <main>
-        {status.active && (
-          <div className="portal-banner">
-            <ShieldCheck size={18} />
-            <span>
-              {status.approved
-                ? 'Jóváhagyott szakmai hozzáférés'
-                : status.doctor
-                  ? 'Regisztráció ellenőrzés alatt'
-                  : 'A szakmai adatok megadása szükséges'}
-            </span>
-            {status.admin && <a href="/admin">Adminisztráció</a>}
-            <button
-              className="button small outline"
-              style={{ marginLeft: 'auto' }}
-              onClick={() => void logout()}
-            >
-              <LogOut size={14} /> Kijelentkezés
-            </button>
-          </div>
-        )}
+        <Text>
+          {status.active && (
+            <div className="portal-banner">
+              <ShieldCheck size={18} />
+              <span>
+                <Text>
+                  {status.approved
+                    ? 'Jóváhagyott szakmai hozzáférés'
+                    : status.doctor
+                      ? 'Regisztráció ellenőrzés alatt'
+                      : 'A szakmai adatok megadása szükséges'}
+                </Text>
+              </span>
+              <Text>
+                {status.admin && (
+                  <a href="/admin">
+                    <Text>{'Adminisztráció'}</Text>
+                  </a>
+                )}
+              </Text>
+              <LocalizedButton
+                className="button small outline"
+                style={{ marginLeft: 'auto' }}
+                onClick={() => void logout()}
+              >
+                <LogOut size={14} />
+                <Text>{' Kijelentkezés '}</Text>
+              </LocalizedButton>
+            </div>
+          )}
+        </Text>
         <section className="intro">
           <div>
             <div className="eyebrow">
-              <span /> A REGENERÁCIÓ ALAPJAI
+              <span />
+              <Text>{' A REGENERÁCIÓ ALAPJAI '}</Text>
             </div>
             <h1>
-              Csontpótlás.
+              <Text>{'Csontpótlás. '}</Text>
               <br />
-              <em>Biztos alapokon.</em>
+              <em>
+                <Text>{'Biztos alapokon.'}</Text>
+              </em>
             </h1>
             <p>
-              Humán csontblokkok és állatgyógyászati csontgraftok.
+              <Text>
+                {'Humán csontblokkok és állatgyógyászati csontgraftok. '}
+              </Text>
               <br />
-              A DIZG és az InTissue kínálata egy helyen.
+              <Text>{'A DIZG és az InTissue kínálata egy helyen. '}</Text>
             </p>
             <a className="text-link" href="#katalogus">
-              Transzplantátumok megtekintése <ArrowRight size={18} />
+              <Text>{'Transzplantátumok megtekintése '}</Text>
+              <ArrowRight size={18} />
             </a>
           </div>
           <div className="intro-note">
-            <span>HUMÁN ALLOGRAFTOK</span>
-            <img
+            <span>
+              <Text>{'HUMÁN ALLOGRAFTOK'}</Text>
+            </span>
+            <LocalizedImage
               src="/products/spongiosa.jpg"
               alt="DIZG spongiosa csontkockák és csontblokkok"
               width="1260"
               height="880"
             />
-            <small>DIZG · Spongiosa</small>
+            <small>
+              <Text>{'DIZG · Spongiosa'}</Text>
+            </small>
             <span className="specimen-label">
               <span
                 style={{ width: 20, height: 1, background: 'currentColor' }}
-              />{' '}
-              Termékfotó
+              />
+              <Text> </Text>
+              <Text>{'Termékfotó '}</Text>
             </span>
           </div>
         </section>
         <section className="catalog-section" id="katalogus">
           <div className="section-top">
             <div>
-              <div className="eyebrow">DIZG · HUMÁN TERMÉKKATALÓGUS</div>
-              <h2>Csontblokkok és ékek</h2>
+              <div className="eyebrow">
+                <Text>{'DIZG · HUMÁN TERMÉKKATALÓGUS'}</Text>
+              </div>
+              <h2>
+                <Text>{'Csontblokkok és ékek'}</Text>
+              </h2>
             </div>
-            <span className="count">03 transzplantátum-típus</span>
+            <span className="count">
+              <Text>{'03 transzplantátum-típus'}</Text>
+            </span>
           </div>
-          {loadError && (
-            <p className="error" role="alert">
-              {loadError}
-            </p>
-          )}
+          <Text>
+            {loadError && (
+              <p className="error" role="alert">
+                <Text>{loadError}</Text>
+              </p>
+            )}
+          </Text>
           <div className="product-grid">
-            {products.map((p, i) => (
-              <article className="product-card" key={p.id}>
-                <div className="product-visual">
-                  <span className="product-index">0{i + 1} / HUMÁN CSONT</span>
-                  <img
-                    src={p.image}
-                    alt={p.name + ' – DIZG termékfotó'}
-                    width="1260"
-                    height="880"
-                    loading="lazy"
-                  />
-                  <span className="material">Fagyasztva szárított</span>
-                </div>
-                <div className="product-copy">
-                  <span className="eyebrow">{p.type}</span>
-                  <h3>{p.name}</h3>
-                  <p>{p.summary}</p>
-                  <div className="fee">
-                    <LockKeyhole size={15} />
-                    <span>
-                      {status.approved
-                        ? 'Térítési díjak az adatlapon'
-                        : 'Térítési díj szakmai hozzáféréssel'}
+            <Text>
+              {products.map((p, i) => (
+                <article className="product-card" key={p.id}>
+                  <div className="product-visual">
+                    <span className="product-index">
+                      <Text>{'0'}</Text>
+                      <Text>{i + 1}</Text>
+                      <Text>{' / HUMÁN CSONT'}</Text>
+                    </span>
+                    <LocalizedImage
+                      src={p.image}
+                      alt={p.name + ' – DIZG termékfotó'}
+                      width="1260"
+                      height="880"
+                      loading="lazy"
+                    />
+                    <span className="material">
+                      <Text>{'Fagyasztva szárított'}</Text>
                     </span>
                   </div>
-                </div>
-                <button className="card-action" onClick={() => openProduct(p)}>
-                  Termékadatlap <ArrowUpRight size={18} />
-                </button>
-              </article>
-            ))}
+                  <div className="product-copy">
+                    <span className="eyebrow">
+                      <Text>{p.type}</Text>
+                    </span>
+                    <h3>
+                      <Text>{p.name}</Text>
+                    </h3>
+                    <p>
+                      <Text>{p.summary}</Text>
+                    </p>
+                    <div className="fee">
+                      <LockKeyhole size={15} />
+                      <span>
+                        <Text>
+                          {status.approved
+                            ? 'Térítési díjak az adatlapon'
+                            : 'Térítési díj szakmai hozzáféréssel'}
+                        </Text>
+                      </span>
+                    </div>
+                  </div>
+                  <LocalizedButton
+                    className="card-action"
+                    onClick={() => openProduct(p)}
+                  >
+                    <Text>{'Termékadatlap '}</Text>
+                    <ArrowUpRight size={18} />
+                  </LocalizedButton>
+                </article>
+              ))}
+            </Text>
           </div>
           <p className="fineprint" style={{ marginTop: 14 }}>
-            Válogatás a DIZG gyártói portfóliójából. A rendelkezésre állás és a
-            térítési díj külön visszaigazolás tárgya.
+            <Text>
+              {
+                'Válogatás a DIZG gyártói portfóliójából. A rendelkezésre állás és a térítési díj külön visszaigazolás tárgya. '
+              }
+            </Text>
           </p>
         </section>
         <VeterinaryCatalog />
         <section className="access-band" id="hozzaferes">
           <ShieldCheck size={36} strokeWidth={1.3} />
           <div>
-            <h2>Szakmai hozzáférés, ellenőrzött regisztráció.</h2>
+            <h2>
+              <Text>{'Szakmai hozzáférés, ellenőrzött regisztráció.'}</Text>
+            </h2>
             <p>
-              A regisztrációhoz orvosi név és érvényes pecsétszám szükséges.
+              <Text>
+                {
+                  'A regisztrációhoz orvosi név és érvényes pecsétszám szükséges. '
+                }
+              </Text>
             </p>
           </div>
           <a className="button" href="/regisztracio">
-            Orvosi regisztráció <ArrowUpRight size={18} />
+            <Text>{'Orvosi regisztráció '}</Text>
+            <ArrowUpRight size={18} />
           </a>
         </section>
         <section className="notes">
           <div>
             <LockKeyhole size={21} />
-            <h3>Védett munkamenet</h3>
-            <p>2 perc inaktivitás után automatikusan kijelentkeztetjük.</p>
+            <h3>
+              <Text>{'Védett munkamenet'}</Text>
+            </h3>
+            <p>
+              <Text>
+                {'2 perc inaktivitás után automatikusan kijelentkeztetjük.'}
+              </Text>
+            </p>
           </div>
           <div>
             <ShieldCheck size={21} />
-            <h3>Ellenőrzött jogosultság</h3>
+            <h3>
+              <Text>{'Ellenőrzött jogosultság'}</Text>
+            </h3>
             <p>
-              A szakmai hozzáférést az OKFŐ nyilvántartása alapján hagyjuk jóvá.
+              <Text>
+                {
+                  'A szakmai hozzáférést az OKFŐ nyilvántartása alapján hagyjuk jóvá. '
+                }
+              </Text>
             </p>
           </div>
           <div>
             <CircleHelp size={21} />
-            <h3>Gyártói dokumentáció</h3>
+            <h3>
+              <Text>{'Gyártói dokumentáció'}</Text>
+            </h3>
             <p>
-              A részletes jellemzőket és alkalmazási előírásokat a DIZG
-              ismerteti.
+              <Text>
+                {
+                  'A részletes jellemzőket és alkalmazási előírásokat a DIZG ismerteti. '
+                }
+              </Text>
             </p>
           </div>
         </section>
-        {status.approved && (
-          <section className="requests-list">
-            <h2>Rögzített igényléseim</h2>
-            {requests.length ? (
-              requests.map((r) => (
-                <div className="request-row" key={r.id}>
-                  <strong>{r.sku}</strong>
-                  <span>{r.quantity} db</span>
-                  <span>Térítési díj: {money(r.fee * r.quantity)}</span>
-                  <span>
-                    {new Date(r.created_at).toLocaleDateString('hu-HU')} ·
-                    Rögzítve
-                  </span>
-                </div>
-              ))
-            ) : (
-              <p className="empty-note">Még nincs rögzített igénylés.</p>
-            )}
-          </section>
-        )}
+        <Text>
+          {status.approved && (
+            <section className="requests-list">
+              <h2>
+                <Text>{'Rögzített igényléseim'}</Text>
+              </h2>
+              <Text>
+                {requests.length ? (
+                  requests.map((r) => (
+                    <div className="request-row" key={r.id}>
+                      <strong>
+                        <Text>{r.sku}</Text>
+                      </strong>
+                      <span>
+                        <Text>{r.quantity}</Text>
+                        <Text>{' db'}</Text>
+                      </span>
+                      <span>
+                        <Text>{'Térítési díj: '}</Text>
+                        <Text>{money(r.fee * r.quantity)}</Text>
+                      </span>
+                      <span>
+                        <Text>
+                          {new Date(r.created_at).toLocaleDateString(
+                            language === 'en' ? 'en-GB' : 'hu-HU',
+                          )}
+                        </Text>
+                        <Text>{' · Rögzítve '}</Text>
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="empty-note">
+                    <Text>{'Még nincs rögzített igénylés.'}</Text>
+                  </p>
+                )}
+              </Text>
+            </section>
+          )}
+        </Text>
       </main>
       <SiteFooter />
       <Dialog
@@ -332,130 +439,157 @@ export default function Catalog() {
         }}
       >
         <DialogContent className="dialog-content">
-          {selected && (
-            <>
-              <div className="eyebrow">{selected.original}</div>
-              <DialogTitle
-                style={{ fontSize: 28, fontWeight: 400, marginBottom: 8 }}
-              >
-                {selected.name}
-              </DialogTitle>
-              <DialogDescription className="detail-description">
-                {selected.detail}
-              </DialogDescription>
-              <div className="detail-layout">
-                <img
-                  src={selected.image}
-                  width="1260"
-                  height="880"
-                  alt={selected.name}
-                />
-                <div>
-                  <h3>Változatok és térítési díjak</h3>
-                  <div className="variant-list">
-                    {selected.variants.map((v) => (
-                      <div key={v.sku}>
-                        <span>
-                          {v.label}
-                          <small>{v.sku}</small>
-                        </span>
-                        <strong>
-                          {status.approved
-                            ? fees[v.sku] === undefined
-                              ? 'Egyeztetés alatt'
-                              : money(fees[v.sku])
-                            : 'Zárolt'}
-                        </strong>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    className="text-link"
-                    href={selected.source}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Gyártói adatlap és dokumentáció <ExternalLink size={14} />
-                  </a>
+          <Text>
+            {selected && (
+              <>
+                <div className="eyebrow">
+                  <Text>{selected.original}</Text>
                 </div>
-              </div>
-              {status.approved ? (
-                <form className="request-form" onSubmit={submit}>
-                  <label>
-                    Változat
-                    <Select
-                      value={sku}
-                      onValueChange={(v) => {
-                        if (v) setSku(v);
-                      }}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {selected.variants.map((v) => (
-                          <SelectItem key={v.sku} value={v.sku}>
-                            {v.sku} · {v.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </label>
-                  <label>
-                    Mennyiség
-                    <input
-                      type="number"
-                      min={1}
-                      max={100}
-                      step={1}
-                      required
-                      value={quantity}
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                    />
-                  </label>
-                  <button
-                    className="button"
-                    disabled={busy || fees[sku] === undefined}
-                    type="submit"
-                  >
-                    {busy ? 'Rögzítés…' : 'Igénylés rögzítése'}{' '}
-                    <ArrowRight size={16} />
-                  </button>
-                  <p className="fineprint">
-                    {fees[sku] === undefined
-                      ? 'A változat térítési díja még nincs rögzítve.'
-                      : 'Összes térítési díj: ' +
-                        money(fees[sku] * quantity) +
-                        '. Az igénylés külön visszaigazolást igényel.'}
-                  </p>
-                </form>
-              ) : (
-                <div className="notice">
-                  <LockKeyhole
-                    size={17}
-                    style={{ display: 'inline', marginRight: 10 }}
+                <DialogTitle
+                  style={{ fontSize: 28, fontWeight: 400, marginBottom: 8 }}
+                >
+                  <Text>{selected.name}</Text>
+                </DialogTitle>
+                <DialogDescription className="detail-description">
+                  <Text>{selected.detail}</Text>
+                </DialogDescription>
+                <div className="detail-layout">
+                  <LocalizedImage
+                    src={selected.image}
+                    width="1260"
+                    height="880"
+                    alt={selected.name}
                   />
-                  A térítési díjak és az igénylés jóváhagyott orvosi
-                  regisztrációval érhetők el.{' '}
-                  <a
-                    href="/regisztracio"
-                    style={{ textDecoration: 'underline' }}
-                  >
-                    Szakmai hozzáférés →
-                  </a>
+                  <div>
+                    <h3>
+                      <Text>{'Változatok és térítési díjak'}</Text>
+                    </h3>
+                    <div className="variant-list">
+                      <Text>
+                        {selected.variants.map((v) => (
+                          <div key={v.sku}>
+                            <span>
+                              <Text>{v.label}</Text>
+                              <small>
+                                <Text>{v.sku}</Text>
+                              </small>
+                            </span>
+                            <strong>
+                              <Text>
+                                {status.approved
+                                  ? fees[v.sku] === undefined
+                                    ? 'Egyeztetés alatt'
+                                    : money(fees[v.sku])
+                                  : 'Zárolt'}
+                              </Text>
+                            </strong>
+                          </div>
+                        ))}
+                      </Text>
+                    </div>
+                    <a className="text-link" href={`/termekek/${selected.id}`}>
+                      <Text>{'Részletes termékprofil '}</Text>
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
                 </div>
-              )}
-              {message && (
-                <p role="status" className="notice">
-                  {message}
+                <Text>
+                  {status.approved ? (
+                    <form className="request-form" onSubmit={submit}>
+                      <label>
+                        <Text>{'Változat '}</Text>
+                        <Select
+                          value={sku}
+                          onValueChange={(v) => {
+                            if (v) setSku(v);
+                          }}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <Text>
+                              {selected.variants.map((v) => (
+                                <SelectItem key={v.sku} value={v.sku}>
+                                  <Text>{v.sku}</Text>
+                                  <Text>{' · '}</Text>
+                                  <Text>{v.label}</Text>
+                                </SelectItem>
+                              ))}
+                            </Text>
+                          </SelectContent>
+                        </Select>
+                      </label>
+                      <label>
+                        <Text>{'Mennyiség '}</Text>
+                        <LocalizedInput
+                          type="number"
+                          min={1}
+                          max={100}
+                          step={1}
+                          required
+                          value={quantity}
+                          onChange={(e) => setQuantity(Number(e.target.value))}
+                        />
+                      </label>
+                      <LocalizedButton
+                        className="button"
+                        disabled={busy || fees[sku] === undefined}
+                        type="submit"
+                      >
+                        <Text>
+                          {busy ? 'Rögzítés…' : 'Igénylés rögzítése'}{' '}
+                        </Text>
+                        <ArrowRight size={16} />
+                      </LocalizedButton>
+                      <p className="fineprint">
+                        <Text>
+                          {fees[sku] === undefined
+                            ? 'A változat térítési díja még nincs rögzítve.'
+                            : 'Összes térítési díj: ' +
+                              money(fees[sku] * quantity) +
+                              '. Az igénylés külön visszaigazolást igényel.'}
+                        </Text>
+                      </p>
+                    </form>
+                  ) : (
+                    <div className="notice">
+                      <LockKeyhole
+                        size={17}
+                        style={{ display: 'inline', marginRight: 10 }}
+                      />
+                      <Text>
+                        {
+                          'A térítési díjak és az igénylés jóváhagyott orvosi regisztrációval érhetők el.'
+                        }
+                      </Text>
+                      <Text> </Text>
+                      <a
+                        href="/regisztracio"
+                        style={{ textDecoration: 'underline' }}
+                      >
+                        <Text>{'Szakmai hozzáférés → '}</Text>
+                      </a>
+                    </div>
+                  )}
+                </Text>
+                <Text>
+                  {message && (
+                    <p role="status" className="notice">
+                      <Text>{message}</Text>
+                    </p>
+                  )}
+                </Text>
+                <p className="fineprint">
+                  <Text>
+                    {
+                      'Szakmai információ. Az alkalmazási előírásokhoz mindig az aktuális gyártói dokumentáció az irányadó. '
+                    }
+                  </Text>
                 </p>
-              )}
-              <p className="fineprint">
-                Szakmai információ. Az alkalmazási előírásokhoz mindig az
-                aktuális gyártói dokumentáció az irányadó.
-              </p>
-            </>
-          )}
+              </>
+            )}
+          </Text>
         </DialogContent>
       </Dialog>
     </>
