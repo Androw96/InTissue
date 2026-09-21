@@ -49,12 +49,19 @@ export default function Videos() {
                     onClick={() => setSelected(v)}
                     aria-label={`${v.title} – videó megnyitása`}
                   >
-                    <Play className="play-icon" />
-                    <div>
+                    <div className="video-thumbnail">
+                      <img
+                        src={v.src.includes('t-ti-the-dog') ? '/images/tati_dog.webp' : v.category === 'animal' ? '/images/animal_treatment.webp' : v.src.includes('regbone-making') ? '/products/intissue/bmg.webp' : '/images/human_treatment.webp'}
+                        alt=""
+                        loading="lazy"
+                        width={640}
+                        height={360}
+                      />
+                      <Play className="play-icon" aria-hidden="true" />
+                    </div>
+                    <div className="video-title-bar">
                       <h3>{v.title}</h3>
-                      <span>
-                        {v.duration} / {v.originalTitle}
-                      </span>
+                      <span>{v.duration}</span>
                     </div>
                   </button>
                 ))}
