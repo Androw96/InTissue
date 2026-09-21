@@ -41,7 +41,7 @@ export default function Registration() {
           in<span>tissue</span>
           <i>+</i>
         </a>
-        <a className="text-link compact" href="/">
+        <a className="text-link compact" href="/katalogus">
           <ArrowLeft size={16} /> Vissza a katalógushoz
         </a>
       </header>
@@ -155,7 +155,7 @@ export default function Registration() {
                 )}
               </dl>
               {status.approved && (
-                <a href="/" className="button wide">
+                <a href="/katalogus" className="button wide">
                   Vissza a katalógushoz <ArrowRight size={16} />
                 </a>
               )}

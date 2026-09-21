@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import VeterinaryCatalog from './veterinary-catalog';
+import { SiteHeader, SiteFooter } from './site-shell';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -158,30 +159,7 @@ export default function Catalog() {
   }
   return (
     <>
-      <div className="topbar">
-        <span>SZÖVETREGENERÁCIÓ · SZAKMAI PORTÁL</span>
-        <span>Humán és állatgyógyászati termékinformációk</span>
-      </div>
-      <header className="header">
-        <a className="logo" href="/">
-          in<span>tissue</span>
-          <i>+</i>
-        </a>
-        <nav>
-          <a className="active" href="#katalogus">
-            Transzplantátumok
-          </a>
-          <a href="#allatgyogyaszat">Állatgyógyászat</a>
-          <a href="#intissue">Az InTissue-ról</a>
-          <a href="https://dizg.de" target="_blank" rel="noreferrer">
-            A DIZG-ről <ArrowUpRight size={14} />
-          </a>
-        </nav>
-        <a className="button small outline" href="/regisztracio">
-          {status.active ? 'Szakmai fiókom' : 'Orvosi belépés'}{' '}
-          <ArrowRight size={16} />
-        </a>
-      </header>
+      <SiteHeader />
       <main>
         {status.active && (
           <div className="portal-banner">
@@ -346,18 +324,7 @@ export default function Catalog() {
           </section>
         )}
       </main>
-      <footer>
-        <a className="logo" href="/">
-          in<span>tissue</span>
-          <i>+</i>
-        </a>
-        <span>
-          Szakmai katalógus · Privát bemutató · Termékfotók: DIZG és InTissue
-        </span>
-        <a href="https://kereso.enkk.hu/" target="_blank" rel="noreferrer">
-          OKFŐ nyilvántartás <ArrowUpRight size={14} />
-        </a>
-      </footer>
+      <SiteFooter />
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {

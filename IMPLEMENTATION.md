@@ -49,3 +49,16 @@ A felhasználó kérésére átvettük az intissue.com főoldalának bemutatkoz�
 Az állatgyógyászati termékek külön tájékoztató részt kaptak, a gyártó „not for use in human patients” korlátozásával. A 15 tétel nem került a humán igénylési végpont megengedett cikkszámai közé. A referencia térítési díjak EUR-ban, kiszolgálóoldalon tároltak, és a meglévő jóváhagyási/munkamenet-kapun keresztül kérhetők le. Nem írják felül a HUF-ban kezelt, visszaigazolt díjtáblázatot. Állatorvosi hitelesítést vagy állatgyógyászati rendelést ez a tartalombővítés nem vezet be.
 
 A főoldal bemutatkozó szövege, a gyártó neve/címe, az általános tárolási ismertető és a szakmai videótár létezése szerepel a felületen. Gyógyulási ígéretek, nem ellenőrzött tanúsítási állítások és műtéti lépések nem kerültek új marketingállításként átvételre. A három új fotó eredeti InTissue termékfotó.
+
+## 2026-09-21: Full light InTissue presentation site
+
+- New homepage at `/`; existing gated catalog now at `/katalogus`.
+- Shared white/sage/forest-green header, footer and typography across presentation pages and catalog.
+- Original source routes represented: `/animal`, `/videos`, `/team`, `/production`, `/contact`, `/legal`.
+- 13 professional profiles with original portraits and publication links; 16 original self-hosted videos, loaded on deliberate opening, without autoplay.
+- Original product catalog and all 15 veterinary reference values rechecked against current source catalog; values unchanged.
+- Veterinary product, handling, donor-screening, storage, processing and scientific content adapted into Hungarian summaries. Current manufacturer's package instructions remain authoritative; original full IFU linked.
+- Contact form prepares a mailto message only; no automatic send, third-party backend credentials or unverifiable successful-send state. Original contact/order form linked separately.
+- Legal page distinguishes original website practices from this Sites portal, rather than copying original claims that there are no accounts or external video requests.
+- Original source assets and page data inspected from https://intissue.com, including current sitemap and source bundles, on 2026-09-21. Team/product images retained from original source; media rights remain with their owners.
+- Typecheck and all nine primary route responses verified. All 16 video URLs respond 200 with video/mp4. Interactive visual QA unavailable because the Mac was locked; no UI settings changed.

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { PortalProvider } from './portal-provider';
 export const metadata: Metadata = {
-  title: 'InTissue | Csonttranszplantátumok',
+  title: 'InTissue | Intelligent Tissue Solutions',
   icons: { icon: '/favicon.svg' },
   description:
     'Humán DIZG csontblokkok és InTissue állatgyógyászati csontgraftok katalógusa. Orvosi regisztráció, ellenőrzött hozzáférés és térítési díjak.',
