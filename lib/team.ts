@@ -126,7 +126,7 @@ export const team = [
     category: 'human',
   },
   {
-    name: 'Dr. Mariann Tálas',
+    name: 'Dr. Mariann Tálos',
     role: 'Szájsebész és parodontológus',
     details: [
       'GBR- és GTR-technikák InTissue-anyagokkal',
