@@ -4,6 +4,7 @@ export const videos = [
     originalTitle: 'Horse Sinus Teaser',
     duration: '01:30',
     src: 'https://intissue.com/videos/animal-horse-sinus-teaser.mp4',
+    poster: '/videos/posters/animal-horse-sinus-teaser.jpg',
     category: 'animal',
   },
   {
@@ -11,6 +12,7 @@ export const videos = [
     originalTitle: 'TÁTI the Dog',
     duration: '01:24',
     src: 'https://intissue.com/videos/animal-t-ti-the-dog.mp4',
+    poster: '/videos/posters/animal-t-ti-the-dog.jpg',
     category: 'animal',
   },
   {
@@ -18,6 +20,7 @@ export const videos = [
     originalTitle: 'Shearing Injury Dog 2',
     duration: '00:50',
     src: 'https://intissue.com/videos/animal-management-of-shearing-injury-for-dog-2.mp4',
+    poster: '/videos/posters/animal-management-of-shearing-injury-for-dog-2.jpg',
     category: 'animal',
   },
   {
@@ -25,6 +28,7 @@ export const videos = [
     originalTitle: 'Shearing Injury Dog',
     duration: '00:30',
     src: 'https://intissue.com/videos/animal-management-of-shearing-injury-for-dog.mp4',
+    poster: '/videos/posters/animal-management-of-shearing-injury-for-dog.jpg',
     category: 'animal',
   },
   {
@@ -32,6 +36,7 @@ export const videos = [
     originalTitle: 'Tumor Treatment with RegBone',
     duration: '00:41',
     src: 'https://intissue.com/videos/animal-new-treatment-of-tumor-for-dog-with-regbone-in-mandible.mp4',
+    poster: '/videos/posters/animal-new-treatment-of-tumor-for-dog-with-regbone-in-mandible.jpg',
     category: 'animal',
   },
   {
@@ -39,6 +44,7 @@ export const videos = [
     originalTitle: 'Dent Art',
     duration: '02:42',
     src: 'https://intissue.com/videos/surgery-dent-art.mp4',
+    poster: '/videos/posters/surgery-dent-art.jpg',
     category: 'human',
   },
   {
@@ -46,6 +52,7 @@ export const videos = [
     originalTitle: 'Periodontology',
     duration: '00:38',
     src: 'https://intissue.com/videos/surgery-periodontology.mp4',
+    poster: '/videos/posters/surgery-periodontology.jpg',
     category: 'human',
   },
   {
@@ -53,6 +60,7 @@ export const videos = [
     originalTitle: 'Sinus Lift with RegBone',
     duration: '02:25',
     src: 'https://intissue.com/videos/surgery-sinus-lift-with-regbone.mp4',
+    poster: '/videos/posters/surgery-sinus-lift-with-regbone.jpg',
     category: 'human',
   },
   {
@@ -60,6 +68,7 @@ export const videos = [
     originalTitle: 'RegBone Making',
     duration: '00:58',
     src: 'https://intissue.com/videos/surgery-regbone-making.mp4',
+    poster: '/videos/posters/surgery-regbone-making.jpg',
     category: 'human',
   },
   {
@@ -67,6 +76,7 @@ export const videos = [
     originalTitle: 'Epulis with RegBone',
     duration: '00:25',
     src: 'https://intissue.com/videos/surgery-new-management-of-epulis-with-regbone.mp4',
+    poster: '/videos/posters/surgery-new-management-of-epulis-with-regbone.jpg',
     category: 'human',
   },
   {
@@ -74,6 +84,7 @@ export const videos = [
     originalTitle: 'Peri Implantitis',
     duration: '01:17',
     src: 'https://intissue.com/videos/surgery-management-of-peri-implantitis.mp4',
+    poster: '/videos/posters/surgery-management-of-peri-implantitis.jpg',
     category: 'human',
   },
   {
@@ -81,6 +92,7 @@ export const videos = [
     originalTitle: 'Vertical & Horizontal Augmentation',
     duration: '00:40',
     src: 'https://intissue.com/videos/surgery-vertical-and-horizontal-augmentation.mp4',
+    poster: '/videos/posters/surgery-vertical-and-horizontal-augmentation.jpg',
     category: 'human',
   },
   {
@@ -88,6 +100,7 @@ export const videos = [
     originalTitle: 'Extractio, Sofort GBR with RegBone3',
     duration: '01:05',
     src: 'https://intissue.com/videos/surgery-extractio-sofort-gbr-with-regbone3.mp4',
+    poster: '/videos/posters/surgery-extractio-sofort-gbr-with-regbone3.jpg',
     category: 'human',
   },
   {
@@ -95,6 +108,7 @@ export const videos = [
     originalTitle: 'Sinus Lift - Lateral Approach with RegBone2',
     duration: '01:42',
     src: 'https://intissue.com/videos/surgery-sinus-lift-lateral-approach-with-regbone2.mp4',
+    poster: '/videos/posters/surgery-sinus-lift-lateral-approach-with-regbone2.jpg',
     category: 'human',
   },
   {
@@ -102,6 +116,7 @@ export const videos = [
     originalTitle: 'Paradontology',
     duration: '01:05',
     src: 'https://intissue.com/videos/surgery-paradontology.mp4',
+    poster: '/videos/posters/surgery-paradontology.jpg',
     category: 'human',
   },
   {
@@ -109,6 +124,7 @@ export const videos = [
     originalTitle: 'Augmentation with 3D Titan Mesh',
     duration: '00:40',
     src: 'https://intissue.com/videos/surgery-vertical-and-horizontal-augmentation-with-3d-titan-mesh.mp4',
+    poster: '/videos/posters/surgery-vertical-and-horizontal-augmentation-with-3d-titan-mesh.jpg',
     category: 'human',
   },
 ];

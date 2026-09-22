@@ -59,15 +59,7 @@ export default function Videos() {
                       >
                         <div className="video-thumbnail">
                           <LocalizedImage
-                            src={
-                              v.src.includes('t-ti-the-dog')
-                                ? '/images/tati_dog.webp'
-                                : v.category === 'animal'
-                                  ? '/images/animal_treatment.webp'
-                                  : v.src.includes('regbone-making')
-                                    ? '/products/intissue/bmg.webp'
-                                    : '/images/human_treatment.webp'
-                            }
+                            src={v.poster}
                             alt=""
                             loading="lazy"
                             width={640}
@@ -120,6 +112,7 @@ export default function Videos() {
                   key={selected.src}
                   className="video-player"
                   src={selected.src}
+                  poster={selected.poster}
                   controls
                   playsInline
                   preload="none"
