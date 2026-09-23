@@ -51,15 +51,7 @@ export default function Admin() {
   return (
     <>
       <header className="header">
-        <a className="logo" href="/">
-          <Text>{'in'}</Text>
-          <span>
-            <Text>{'tissue'}</Text>
-          </span>
-          <i>
-            <Text>{'+'}</Text>
-          </i>
-        </a>
+        <a className="logo" href="/"><img className="brand-mark" src="/it-logo.jpg" alt="InTissue" width={48} height={48}/><span className="brand-name" aria-hidden="true">In<span>Tissue</span></span></a>
         <a href="/regisztracio">
           <Text>{'Szakmai fiókom →'}</Text>
         </a>

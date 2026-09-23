@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const en = (await cookies()).get('intissue_language')?.value === 'en';
   return {
     title: 'InTissue | Intelligent Tissue Solutions',
-    icons: { icon: '/favicon.svg' },
+    icons: { icon: '/it-logo.jpg' },
     description: en
       ? 'Human DIZG bone blocks and InTissue veterinary grafts. Product profiles, professional resources and verified access to reimbursement fees.'
       : 'Humán DIZG csontblokkok és InTissue állatgyógyászati graftok. Termékprofilok, szakmai információk és ellenőrzött hozzáférés a térítési díjakhoz.',

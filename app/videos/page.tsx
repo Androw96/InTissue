@@ -39,7 +39,7 @@ export default function Videos() {
               <h2>
                 <Text>{title} </Text>
                 <small
-                  style={{ fontSize: 13, color: '#768574', letterSpacing: 0 }}
+                  style={{ fontSize: 13, color: '#857475', letterSpacing: 0 }}
                 >
                   <Text>{videos.filter((v) => v.category === cat).length}</Text>
                   <Text>{' videó '}</Text>

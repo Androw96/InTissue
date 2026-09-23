@@ -14,15 +14,7 @@ export function SiteHeader() {
         <LanguageSwitcher />
       </div>
       <header className="header site-header">
-        <a className="logo" href="/" aria-label="InTissue főoldal">
-          <Text>{'in'}</Text>
-          <span>
-            <Text>{'tissue'}</Text>
-          </span>
-          <i>
-            <Text>{'+'}</Text>
-          </i>
-        </a>
+        <a className="logo" href="/" aria-label="InTissue főoldal"><img className="brand-mark" src="/it-logo.jpg" alt="InTissue" width={48} height={48}/><span className="brand-name" aria-hidden="true">In<span>Tissue</span></span></a>
         <nav aria-label="Fő navigáció">
           <a href="/">
             <Text>{'Főoldal'}</Text>
@@ -56,15 +48,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-wrap footer-grid">
         <div>
-          <a className="logo" href="/">
-            <Text>{'in'}</Text>
-            <span>
-              <Text>{'tissue'}</Text>
-            </span>
-            <i>
-              <Text>{'+'}</Text>
-            </i>
-          </a>
+          <a className="logo" href="/"><img className="brand-mark" src="/it-logo.jpg" alt="InTissue" width={48} height={48}/><span className="brand-name" aria-hidden="true">In<span>Tissue</span></span></a>
           <p>
             <Text>{'Szövetregeneráció. '}</Text>
             <br />
