@@ -8,4 +8,4 @@ Registration and admin routes show a local availability notice and contact link.
 
 The Pages-specific privacy page describes this static version. The original server site's authentication and database behavior remain unchanged.
 
-Deploy the contents of `.pages-dist` to the `gh-pages` branch (root directory), which is configured as the GitHub Pages source. Keep `.nojekyll`. The optional workflow example requires workflow permissions to install under `.github/workflows/`.
+Publish by rebuilding `.pages-dist`, copying its contents into the tracked `docs/` directory, and committing and pushing to `main`. GitHub Pages is configured to use `main` → `/docs`. Keep `docs/.nojekyll`. The old `gh-pages` branch is no longer the publishing source. The optional workflow example requires workflow permissions to install under `.github/workflows/`.
