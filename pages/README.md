@@ -1,23 +1,11 @@
-# GitHub Pages presentation
+# GitHub Pages website
 
-`pnpm build:pages` builds the public presentation into `.pages-dist`.
-The homepage, team, contact and production pages reuse the existing InTissue
-components, red styling, images and Hungarian/English translations. HTML is
-prerendered in Hungarian; the language switch and contact form run in the browser.
+`pnpm build:pages` builds the static website into `.pages-dist` using `/InTissue/` as its base path.
 
-The build uses `/InTissue/` as its base path. Professional catalog, animal,
-video, registration and legal links lead to the existing site at
-https://intissue-csontblokkok.konyaandras96.chatgpt.site, whose access controls
-are unchanged. Its current owner-only audience may prevent other visitors
-from opening those destinations. No authentication, fees, medical registrations,
-database, or portal API is deployed to Pages.
+The homepage, team, contact, partners, catalog, veterinary information, videos and human product profiles remain on GitHub Pages. Shared components retain the red design and Hungarian/English language switch. Hungarian HTML is prerendered; catalog dialogs, video playback and the contact form run in the browser.
 
-Deploy the contents of `.pages-dist` to the `gh-pages` branch, and select that
-branch (root directory) as the Pages source. An optional manual Actions workflow
-is provided in `pages/github-pages.yml.example`; installing it under
-`.github/workflows/` requires a GitHub token with workflow permissions.
-Publication is pending explicit approval because Pages exposes
-the presentation publicly. The source repository remains private; private
-repository Pages support depends on the GitHub account plan.
+Registration and admin routes show a local availability notice and contact link. No portal API, authenticated sessions, registrations, protected fees or request submission is included. No navigation points to ChatGPT Sites. Video media and explicitly labeled original-source links can use intissue.com.
 
-Changing the existing Site or its database does not happen as part of this build.
+The Pages-specific privacy page describes this static version. The original server site's authentication and database behavior remain unchanged.
+
+Deploy the contents of `.pages-dist` to the `gh-pages` branch (root directory), which is configured as the GitHub Pages source. Keep `.nojekyll`. The optional workflow example requires workflow permissions to install under `.github/workflows/`.
